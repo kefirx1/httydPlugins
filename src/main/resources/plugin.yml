@@ -1,0 +1,99 @@
+name: HttydPlugins
+version: '${version}'
+main: pl.dev.httyd.httydplugins.HttydPlugins
+authors: [ kefirx ]
+permissions:
+  create.setname:
+    description: Pozwala na stworzenie karty postaci i uzywanie komendy /setname
+commands:
+  opis:
+    description: Zmienia opis Twojej postaci
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /opis [tekst]
+  wizerunek:
+    description: Zmienia wizerunek Twojej postaci
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /wizerunek [tekst]
+  menu:
+    description: Sprawdz widok swojego menu
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /menu
+  setname:
+    description: Ustawnie imienia i nazwiska postaci
+    usage: /setname [Imie] [Nazwisko] [wiek] | /setmame Martin Wilson 30
+    permission-message: Posiadasz już swoją kartę postaci
+    permission:
+      create.setname
+  ooc:
+    description: Używaj chatu OOC.
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /ooc [tekst]
+    aliases:
+      - o
+  me:
+    description: Używaj komendy narracyjnej opisującej Twoją postać.
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /me [tekst]
+  do:
+    description: Używaj komendy narracyjnej opisującej otoczenie Twojej postaci.
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /do [tekst]
+  localnar:
+    description: Komenda narracyjna do przeprowadzania lokalnych narracji - 25 kratek.
+    permission: roleplay.narrator
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /localnar [tekst]
+  nar:
+    description: Komenda narracyjna do przeprowadzania narracji - 50 kratek.
+    permission: roleplay.narrator
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /nar [tekst]
+  globalnar:
+    description: Komenda narracyjna do przeprowadzania globalnych narracji.
+    permission: roleplay.narrator
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /globalnar [tekst]
+  szept:
+    description: Używaj komendy do szeptania.
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /szept [tekst]
+    aliases:
+      - s
+  su:
+    description: Używaj komendy do szeptania na ucho do konkretnego gracza.
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /su [gracz] [tekst]
+  broadcast:
+    description: Komenda dla administracji do ogłaszania wiadomości.
+    permission: roleplay.administracja
+    permission-message: Nie masz dostepu do tej komendy!
+    usage: Poprawne uzycie - /broadcast [tekst]
+    aliases: /bc
+  prefix:
+    description: Zmiana prefixu
+    permission: roleplay.narrator
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Poprawne uzycie - /prefix [gracz] [prefix] | /prefix kefirx &5MartinWilson
+  sprobuj:
+    description: Sprobuj wykonać dana czynnosc
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Poprawne uzycie - /sprobuj [wartosc]
+  kostki:
+    description: Wartosc kostek
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Poprawne uzycie - /kostki [wartos] - /kostki [ilosc kostek] [wartosc]
+  drzwi:
+    description: Otwieranie drzwi
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Nie stoisz przy zadnych drzwiach
