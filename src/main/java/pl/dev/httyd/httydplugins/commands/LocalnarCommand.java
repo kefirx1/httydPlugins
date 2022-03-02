@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.time.LocalTime;
+
 public class LocalnarCommand implements CommandExecutor {
 
     @Override
@@ -14,15 +16,19 @@ public class LocalnarCommand implements CommandExecutor {
 
         if(args.length>0){
 
+            LocalTime time = LocalTime.now();
+            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
             Player player = (Player) sender;
 
             String msg = String.join(" ", args);
 
-            player.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[L]: " + ChatColor.DARK_AQUA + msg);
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[L]: " + ChatColor.DARK_AQUA + msg);
             for (Entity entity : player.getNearbyEntities(25, 25, 25)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
-                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[L]: " + ChatColor.DARK_AQUA + msg);
+                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[L]: " + ChatColor.DARK_AQUA + msg);
                 }
             }
 

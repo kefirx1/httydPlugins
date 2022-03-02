@@ -9,6 +9,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import pl.dev.httyd.httydplugins.data.PlayerStatistics;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -23,9 +24,17 @@ public class CreateCharacterCard {
 
     DBExecute dbExecute = new DBExecute();
 
+
+
+
+
     public void personalInfoQuestion(Player p) {
-        p.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "[Karczmarz]: " + ChatColor.RESET + ChatColor.GRAY + "Witaj przybyszu, jak sie nazywasz?");
-        p.sendMessage(ChatColor.BOLD + "" + ChatColor.RED +"[POMOC]: Uzyj /setname [Imie] [Nazwisko] [wiek] do wybrnia imienia i nazwiska swojej postaci - /setname Martin Wilson 30");
+
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_RED + "[Karczmarz]: " + ChatColor.RESET + ChatColor.GRAY + "Witaj przybyszu, jak sie nazywasz?");
+        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED +"[POMOC]: Uzyj /setname [Imie] [Nazwisko] [wiek] do wybrnia imienia i nazwiska swojej postaci - /setname Martin Wilson 30");
     }
 
     public void setStatistics(ArrayList<Integer> stats){
@@ -67,21 +76,27 @@ public class CreateCharacterCard {
             pperms.setPermission("roleplay.narrator", false);
             teleportToIsland(player);
         }else{
-            player.sendMessage(ChatColor.BOLD + "" + ChatColor.RED + "[LOG]: Niestety nie udalo sie dodac karty postaci, popros moderatora na /helpop o pomoc :c");
+            LocalTime time = LocalTime.now();
+            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "[LOG]: Niestety nie udalo sie dodac karty postaci, popros moderatora na /helpop o pomoc :c");
         }
     }
 
     public void teleportToIsland(Player player){
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
         switch (newPlayerStatistics.island){
             case "Wandale":{
                 player.teleport(berkCords);
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
                 scoreboardInfo.updateScoreboard(player);
                 break;
             }
             case "Lupiezcy":{
                 player.teleport(outcastIslandCords);
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
                 scoreboardInfo.updateScoreboard(player);
                 break;
             }

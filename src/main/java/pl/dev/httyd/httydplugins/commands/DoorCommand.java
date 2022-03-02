@@ -75,7 +75,7 @@ public class DoorCommand implements CommandExecutor {
 
         Location playerLocation = player.getLocation();
 
-        if(bigDoorLocation.distance(playerLocation) > 3){
+        if(bigDoorLocation.distance(playerLocation) > 4){
             return false;
         }
 
@@ -97,6 +97,6 @@ public class DoorCommand implements CommandExecutor {
 //            }
 //        }
 
-        return false;
+        return true;
     }
 }

@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
+
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,6 +71,10 @@ public class MeCommand implements CommandExecutor {
 
         if(args.length>0){
 
+            LocalTime time = LocalTime.now();
+            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
             Player player = (Player) sender;
 
             PowerRanksAPI apiPR = PowerRanks.getInstance().loadAPI();
@@ -85,11 +91,11 @@ public class MeCommand implements CommandExecutor {
             }catch (Exception ignored){
             }
 
-            player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*" + msg + "*");
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*" + msg + "*");
             for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
-                    p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*" + msg + "*");
+                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*" + msg + "*");
                 }
             }
 

@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class PrefixCommand implements CommandExecutor {
@@ -18,6 +19,10 @@ public class PrefixCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
 
         if(args.length == 2 ){
 
@@ -48,10 +53,10 @@ public class PrefixCommand implements CommandExecutor {
                 }
                 player.performCommand("pr createusertag " + newUsertag + " " + newUsertag);
                 player.performCommand("pr setusertag " + player2Name + " " + newUsertag);
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.RED + "Prefix zostal zmieniony pomyslenie");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "Prefix zostal zmieniony pomyslenie");
                 return true;
             }else {
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.RED + "Blad - prefix nie mogl byc zmieniony");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "Blad - prefix nie mogl byc zmieniony");
                 return false;
             }
 

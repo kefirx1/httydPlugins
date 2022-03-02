@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
+import java.time.LocalTime;
+
 
 public class DescCommand implements CommandExecutor {
 
@@ -16,16 +18,20 @@ public class DescCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length > 0) {
 
+            LocalTime time = LocalTime.now();
+            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
             Player player = (Player) sender;
             String playerName = player.getName();
             String newDesc = String.join(" ", args);
 
 
             if(dbExecute.updatePlayerDescription(playerName, newDesc)){
-                player.sendMessage(ChatColor.DARK_GREEN + "Opis postaci zostal zmieniony!");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_GREEN + "Opis postaci zostal zmieniony!");
                 return true;
             }else{
-                player.sendMessage(ChatColor.DARK_RED + "Opis postaci nie mogl byc zmieniony");
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "Opis postaci nie mogl byc zmieniony");
                 return true;
             }
         } else {

@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
+import java.time.LocalTime;
+
 public class SakiewkaCommand implements CommandExecutor {
 
     DBExecute dbExecute = new DBExecute();
@@ -17,17 +19,21 @@ public class SakiewkaCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+         LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         Player player = (Player) sender;
 
         String playerUsertag = powerRanksExtensions.getUserTaq(player);
 
         int playerBalance = dbExecute.getPlayerBalance(player);
 
-        player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "W sakiewce posiadasz: " + playerBalance + " monet");
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "W sakiewce posiadasz: " + playerBalance + " monet");
         for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
-                p.sendMessage(ChatColor.GOLD + "**" + playerUsertag + " zaglada do swojej sakiewki**");
+                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUsertag + " zaglada do swojej sakiewki**");
             }
         }
 

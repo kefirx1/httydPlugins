@@ -23,6 +23,7 @@ import org.bukkit.scoreboard.*;
 import pl.dev.httyd.httydplugins.*;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
+import java.time.LocalTime;
 import java.util.*;
 
 import static pl.dev.httyd.httydplugins.CreateCharacterCard.newPlayerStatistics;
@@ -129,6 +130,10 @@ public class PlayerListener implements Listener {
     public void onRightClick(PlayerInteractEntityEvent e) {
         Player player = e.getPlayer();
 
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         apiPR = PowerRanks.getInstance().loadAPI();
         powerRanksExtensions = new PowerRanksExtensions();
 
@@ -166,6 +171,10 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void clickMenuEvent(InventoryClickEvent e) {
 
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         Player player = (Player) e.getWhoClicked();
 
         if (e.getInventory().getTitle().equalsIgnoreCase(ChatColor.WHITE + "" + ChatColor.BOLD + playerClickedName)) {
@@ -175,7 +184,7 @@ public class PlayerListener implements Listener {
                 case BOOK_AND_QUILL:{
                     //opis
                     String playerDesc = dbExecute.getPlayerDesc(playerClicked);
-                    player.sendMessage(ChatColor.GOLD + "[Opis] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerDesc);
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Opis] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerDesc);
                     player.closeInventory();
                     break;
                 }
@@ -188,24 +197,24 @@ public class PlayerListener implements Listener {
                 case BONE:{
                     //stan
                     String playerCondition = dbExecute.getPlayerCondition(playerClicked);
-                    player.sendMessage(ChatColor.GOLD + "[Stan] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerCondition);
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Stan] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerCondition);
                     player.closeInventory();
                     break;
                 }
                 case SKULL_ITEM:{
                     //wizerunek
                     String playerView = dbExecute.getPlayerView(playerClicked);
-                    player.sendMessage(ChatColor.GOLD + "[Wizerunek] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerView);
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Wizerunek] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerView);
                     player.closeInventory();
                     break;
                 }
                 case LEASH:{
                     //zlap
-                    player.sendMessage(ChatColor.YELLOW + "**Zlapales " + playerClickedUserTag + ChatColor.YELLOW + "**");
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.YELLOW + "**Zlapales " + playerClickedUserTag + ChatColor.YELLOW + "**");
                     for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                         if (entity instanceof Player) {
                             Player p = (Player) entity;
-                            p.sendMessage(ChatColor.YELLOW + "**" + playerUserTag + ChatColor.YELLOW + " zlapal " + playerClickedUserTag + ChatColor.YELLOW + "**");
+                            p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.YELLOW + "**" + playerUserTag + ChatColor.YELLOW + " zlapal " + playerClickedUserTag + ChatColor.YELLOW + "**");
                         }
                     }
                     playerClicked.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 100, false, false));
@@ -214,8 +223,8 @@ public class PlayerListener implements Listener {
                 }
                 case BED:{
                     //obudz
-                    player.sendMessage("Obudzono");
-                    playerClicked.sendMessage("Obudz sie!");
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + "Obudzono");
+                    playerClicked.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + "Obudz sie!");
                     player.closeInventory();
                     break;
                 }
@@ -330,6 +339,10 @@ public class PlayerListener implements Listener {
 
         e.setCancelled(true);
 
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         PowerRanksAPI apiPR = PowerRanks.getInstance().loadAPI();
         PowerRanksExtensions powerRanksExtensions = new PowerRanksExtensions();
 
@@ -346,7 +359,7 @@ public class PlayerListener implements Listener {
         if(haveBrackets(msg)){
             msg = msg.replace("(", "");
             msg = msg.replace(")", "");
-            player.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "[OOC] " + ChatColor.DARK_GRAY + playerName + ": (" + msg + ")");
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_RED + "[OOC] " + ChatColor.DARK_GRAY + playerName + ": (" + msg + ")");
             for(Entity entity : player.getNearbyEntities(12,12,12)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
@@ -354,19 +367,19 @@ public class PlayerListener implements Listener {
                 }
             }
         }else if(haveNoAction(msg)){
-            player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.RED + msg);
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.RED + msg);
             for(Entity entity : player.getNearbyEntities(12,12,12)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
-                    p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.RED + msg);
+                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.RED + msg);
                 }
             }
         }else if(haveYesAction(msg)){
-            player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.DARK_GREEN + msg);
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.DARK_GREEN + msg);
             for(Entity entity : player.getNearbyEntities(12,12,12)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
-                    p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.DARK_GREEN + msg);
+                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.BOLD + "" +  ChatColor.DARK_GREEN + msg);
                 }
             }
         }else if(haveStars(msg)){
@@ -406,19 +419,19 @@ public class PlayerListener implements Listener {
             }
 
             if(haveExclamations(coloredMessage.toString())){
-                player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + coloredMessage);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + coloredMessage);
                 for(Entity entity : player.getNearbyEntities(24,24,24)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + coloredMessage);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + coloredMessage);
                     }
                 }
             }else{
-                player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + coloredMessage);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + coloredMessage);
                 for(Entity entity : player.getNearbyEntities(12,12,12)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + coloredMessage);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + coloredMessage);
                     }
                 }
             }
@@ -427,19 +440,19 @@ public class PlayerListener implements Listener {
         }else{
 
             if(haveExclamations(msg)) {
-                player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + ChatColor.GRAY + msg);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + ChatColor.GRAY + msg);
                 for(Entity entity : player.getNearbyEntities(24,24,24)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + ChatColor.GRAY + msg);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": [!!] " + ChatColor.GRAY + msg);
                     }
                 }
             }else{
-                player.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.GRAY + msg);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.GRAY + msg);
                 for(Entity entity : player.getNearbyEntities(12,12,12)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.GRAY + msg);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.GRAY + msg);
                     }
                 }
             }
@@ -472,13 +485,16 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.setJoinMessage(null);
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
 
         Player player = event.getPlayer();
 
         for(Entity entity : player.getNearbyEntities(12,12,12)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
-                p.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_GREEN + "[+] " + ChatColor.GRAY + player.getName());
+                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.BOLD + "" + ChatColor.DARK_GREEN + "[+] " + ChatColor.GRAY + player.getName());
             }
         }
     }
@@ -492,13 +508,16 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         event.setQuitMessage(null);
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
 
         Player player = event.getPlayer();
 
         for(Entity entity : player.getNearbyEntities(12,12,12)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
-                p.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_RED + "[-] " + ChatColor.GRAY + player.getName());
+                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_RED + "[-] " + ChatColor.GRAY + player.getName());
             }
         }
 

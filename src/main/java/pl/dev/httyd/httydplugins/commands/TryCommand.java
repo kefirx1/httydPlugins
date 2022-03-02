@@ -8,6 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -68,9 +69,14 @@ public class TryCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         Random random = new Random();
 
         if(args.length == 1){
+
 
             Player player = (Player) sender;
             PowerRanksExtensions powerRanksExtensions = new PowerRanksExtensions();
@@ -84,19 +90,19 @@ public class TryCommand implements CommandExecutor {
                 int value = Integer.parseInt(args[0]);
 
                 if(random.nextInt(100) <= value){
-                    player.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
                     for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                         if (entity instanceof Player) {
                             Player p = (Player) entity;
-                            p.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
+                            p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
                         }
                     }
                 }else {
-                    player.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
+                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
                     for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                         if (entity instanceof Player) {
                             Player p = (Player) entity;
-                            p.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
+                            p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
                         }
                     }
                 }

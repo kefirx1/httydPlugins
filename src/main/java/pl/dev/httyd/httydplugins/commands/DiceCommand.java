@@ -8,6 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -70,6 +71,10 @@ public class DiceCommand implements CommandExecutor {
 
         Random random = new Random();
 
+        LocalTime time = LocalTime.now();
+        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
         if(args.length == 1){
 
             Player player = (Player) sender;
@@ -88,11 +93,11 @@ public class DiceCommand implements CommandExecutor {
                     return false;
                 }
 
-                player.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [k" + value + "]: " + ChatColor.GRAY + diceValue);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [k" + value + "]: " + ChatColor.GRAY + diceValue);
                 for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [k" + value + "]: " + ChatColor.GRAY + diceValue);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [k" + value + "]: " + ChatColor.GRAY + diceValue);
                     }
                 }
             }catch (Exception e){
@@ -124,11 +129,11 @@ public class DiceCommand implements CommandExecutor {
                     diceValueString.append(diceValue).append(" ");
                 }
 
-                player.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [" + number + "k" + value + "]: " + ChatColor.GRAY + diceValueString);
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [" + number + "k" + value + "]: " + ChatColor.GRAY + diceValueString);
                 for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                     if (entity instanceof Player) {
                         Player p = (Player) entity;
-                        p.sendMessage(playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [" + number + "k" + value + "]: " + ChatColor.GRAY + diceValueString);
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ChatColor.DARK_GRAY + " [" + number + "k" + value + "]: " + ChatColor.GRAY + diceValueString);
                     }
                 }
             }catch (Exception e){

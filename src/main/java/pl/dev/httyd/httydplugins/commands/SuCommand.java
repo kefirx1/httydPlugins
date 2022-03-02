@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 
+import java.time.LocalTime;
 import java.util.*;
 
 public class SuCommand implements CommandExecutor {
@@ -66,6 +67,10 @@ public class SuCommand implements CommandExecutor {
 
         if(args.length>1){
 
+            LocalTime time = LocalTime.now();
+            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+
+
             Player player = (Player) sender;
             Player player2 = getDestinationPlayer(args[0]);
             if (player2 == null){
@@ -96,11 +101,11 @@ public class SuCommand implements CommandExecutor {
             List<Player> playersFirstStep = new ArrayList<>();
 
 
-            player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "*" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepczesz do ucha " + ChatColor.BOLD + player2UserTag + "* " + ChatColor.RESET + ChatColor.GRAY + msg);
+            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "*" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepczesz do ucha " + ChatColor.BOLD + player2UserTag + "* " + ChatColor.RESET + ChatColor.GRAY + msg);
             for (Entity entity : player.getNearbyEntities(2, 2, 2)) {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
-                    p.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "**" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepcze ci do ucha** " + ChatColor.RESET + ChatColor.GRAY + msg);
+                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "**" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepcze ci do ucha** " + ChatColor.RESET + ChatColor.GRAY + msg);
                     playersFirstStep.add(p);
                 }
             }
@@ -108,7 +113,7 @@ public class SuCommand implements CommandExecutor {
                 if (entity instanceof Player) {
                     Player p = (Player) entity;
                     if(!playersFirstStep.contains(p)){
-                        p.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "**" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepcze  do ucha " + ChatColor.BOLD + player2UserTag + "**");
+                        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "**" + playerUserTag + ChatColor.RESET + ChatColor.GOLD + " Szepcze  do ucha " + ChatColor.BOLD + player2UserTag + "**");
                     }
                 }
             }
