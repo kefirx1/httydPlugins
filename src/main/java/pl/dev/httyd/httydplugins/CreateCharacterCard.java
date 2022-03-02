@@ -15,10 +15,11 @@ import java.util.UUID;
 
 public class CreateCharacterCard {
 
-    public static PlayerStatistics newPlayerStatistics = new PlayerStatistics("", "", "-", 0, "", "", "-", "Wyglada na zdrowego", "-" ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    public static PlayerStatistics newPlayerStatistics = new PlayerStatistics("", "", "-", 0, "", "", 0, "-", "Zdrowy", "-" ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     World world = Bukkit.getWorld("world");
     Location berkCords = new Location(world, -77, 97, 217);
     Location outcastIslandCords = new Location(world, 113, 96, 134);
+    ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     DBExecute dbExecute = new DBExecute();
 
@@ -72,14 +73,16 @@ public class CreateCharacterCard {
 
     public void teleportToIsland(Player player){
         switch (newPlayerStatistics.island){
-            case "Berk":{
+            case "Wandale":{
                 player.teleport(berkCords);
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[BERK] WITAMY!");
+                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
+                scoreboardInfo.updateScoreboard(player);
                 break;
             }
-            case "Wyspa lupiezcow":{
+            case "Lupiezcy":{
                 player.teleport(outcastIslandCords);
-                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[WYSPA LUPIEZCOW] WITAMY!");
+                player.sendMessage(ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
+                scoreboardInfo.updateScoreboard(player);
                 break;
             }
         }
@@ -119,10 +122,10 @@ public class CreateCharacterCard {
         ItemStack outcastIsland = new ItemStack(Material.DIAMOND_SWORD);
 
         ItemMeta berk_meta = berk.getItemMeta();
-        berk_meta.setDisplayName(ChatColor.GOLD + "BERK");
+        berk_meta.setDisplayName(ChatColor.GOLD + "WANDALE");
         berk.setItemMeta(berk_meta);
         ItemMeta outcastIsland_meta = outcastIsland.getItemMeta();
-        outcastIsland_meta.setDisplayName(ChatColor.DARK_GRAY + "WYSPA LUPIEZCOW");
+        outcastIsland_meta.setDisplayName(ChatColor.DARK_GRAY + "LUPIEZCY");
         outcastIsland.setItemMeta(outcastIsland_meta);
 
         guiIsland.setItem(12, berk);

@@ -97,3 +97,8 @@ commands:
     permission: roleplay.player
     permission-message: Nie masz dostepu do tej komendy
     usage: Nie stoisz przy zadnych drzwiach
+  sakiewka:
+    description: Sprawdzanie ilosci Twoich pieniedzy
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Nie masz sakiewki

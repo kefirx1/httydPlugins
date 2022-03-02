@@ -3,12 +3,14 @@ package pl.dev.httyd.httydplugins;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.dev.httyd.httydplugins.commands.*;
 import pl.dev.httyd.httydplugins.listeners.PlayerListener;
+import pl.dev.httyd.httydplugins.listeners.WorldListener;
 
 public final class HttydPlugins extends JavaPlugin {
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new WorldListener(this), this);
         getCommand("opis").setExecutor(new DescCommand());
         getCommand("wizerunek").setExecutor(new ViewCommand());
         getCommand("menu").setExecutor(new MenuCommand());
@@ -26,6 +28,7 @@ public final class HttydPlugins extends JavaPlugin {
         getCommand("sprobuj").setExecutor(new TryCommand());
         getCommand("kostki").setExecutor(new DiceCommand());
         getCommand("drzwi").setExecutor(new DoorCommand());
+        getCommand("sakiewka").setExecutor(new SakiewkaCommand());
 
 
     }

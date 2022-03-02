@@ -19,10 +19,8 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import pl.dev.httyd.httydplugins.CreateCharacterCard;
-import pl.dev.httyd.httydplugins.CreatePlayerMenu;
-import pl.dev.httyd.httydplugins.HttydPlugins;
-import pl.dev.httyd.httydplugins.PowerRanksExtensions;
+import org.bukkit.scoreboard.*;
+import pl.dev.httyd.httydplugins.*;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
 import java.util.*;
@@ -46,6 +44,7 @@ public class PlayerListener implements Listener {
 
     DBExecute dbExecute = new DBExecute();
     CreatePlayerMenu createPlayerMenu = new CreatePlayerMenu();
+    ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     HttydPlugins instance;
 
@@ -264,11 +263,11 @@ public class PlayerListener implements Listener {
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND_AXE:
                     player.closeInventory();
-                    newPlayerStatistics.island = "Berk";
+                    newPlayerStatistics.island = "Wandale";
                     break;
                 case DIAMOND_SWORD:
                     player.closeInventory();
-                    newPlayerStatistics.island = "Wyspa lupiezcow";
+                    newPlayerStatistics.island = "Lupiezcy";
                     break;
             }
 
@@ -482,6 +481,12 @@ public class PlayerListener implements Listener {
                 p.sendMessage(ChatColor.BOLD + "" + ChatColor.DARK_GREEN + "[+] " + ChatColor.GRAY + player.getName());
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerJoinSetScoreboard(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        scoreboardInfo.updateScoreboard(player);
     }
 
     @EventHandler

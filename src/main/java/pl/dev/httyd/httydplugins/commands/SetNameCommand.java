@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.CreateCharacterCard;
+import pl.dev.httyd.httydplugins.database.DBExecute;
 
 public class SetNameCommand implements CommandExecutor {
 
@@ -45,8 +46,10 @@ public class SetNameCommand implements CommandExecutor {
 
     private int getDateOfBirth(int age) {
 
-        int currentICDate = 1000;
+        DBExecute dbExecute = new DBExecute();
 
-        return currentICDate + age;
+        int currentICDate =  dbExecute.getServerYear();
+
+        return currentICDate - age;
     }
 }
