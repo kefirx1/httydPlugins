@@ -1,7 +1,8 @@
 package pl.dev.httyd.httydplugins.listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,11 +15,14 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class WorldListener implements Listener {
 
     HttydPlugins instance;
     DBExecute dbExecute = new DBExecute();
+    Random random = new Random();
 
     public WorldListener(HttydPlugins instance){
         this.instance = instance;
@@ -458,6 +462,131 @@ public class WorldListener implements Listener {
 
     }
 
+    private void setTemperatureWeather(){
+        int serverMonthValue = dbExecute.getServerMonthValue();
+
+        switch (serverMonthValue){
+            case 1:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 2:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(-2, 4 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 3:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(1, 8 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 4:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(6, 13 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 5:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(12, 18 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 6:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(18, 23 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 7:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(21, 26 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 8:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(21, 26 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 9:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(18, 23 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 10:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(12, 17 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 11:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(7, 12 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+            case 12:{
+                int newTemperature = ThreadLocalRandom.current().nextInt(2, 7 + 1);
+                dbExecute.updateServerTemperature(newTemperature);
+                setWeather(newTemperature);
+                break;
+            }
+        }
+    }
+
+    private void setWeather(int temperature) {
+        World world = Bukkit.getWorld("world");
+
+        if(random.nextInt(100)<=30){
+            if(temperature>2){
+                if(random.nextInt(100)<=50) {
+                    for(int i = -480; i<=320; i++){
+                        for (int j = -525; j<=600; j++){
+                            world.setBiome(i, j, Biome.PLAINS);
+                        }
+                    }
+                    dbExecute.updateServerWeather("DESZCZOWO");
+                    world.setStorm(true);
+                    world.setThundering(false);
+                }else{
+                    for(int i = -480; i<=320; i++){
+                        for (int j = -525; j<=600; j++){
+                            world.setBiome(i, j, Biome.PLAINS);
+                        }
+                    }
+                    dbExecute.updateServerWeather("BURZOWO");
+                    world.setStorm(true);
+                    world.setThundering(true);
+                }
+            }else {
+                for(int i = -480; i<=320; i++){
+                    for (int j = -525; j<=600; j++){
+                        world.setBiome(i, j, Biome.TAIGA_COLD);
+                    }
+                }
+                dbExecute.updateServerWeather("SNIEZNIE");
+                world.setStorm(true);
+                world.setThundering(false);
+            }
+        }else {
+            for(int i = -480; i<=320; i++){
+                for (int j = -525; j<=600; j++){
+                    world.setBiome(i, j, Biome.PLAINS);
+                }
+            }
+            dbExecute.updateServerWeather("SLONECZNIE");
+            world.setStorm(false);
+            world.setThundering(false);
+        }
+
+    }
 
     @EventHandler
     public void onWorldSave (WorldSaveEvent event){
@@ -469,6 +598,7 @@ public class WorldListener implements Listener {
 
         if(!dayOfWeekServer.equals(dayOfWeekTranslated)){
             setNextDay(dayOfWeekTranslated);
+            setTemperatureWeather();
             ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
             for (Player p: Bukkit.getOnlinePlayers()) {
                 scoreboardInfo.updateScoreboard(p);

@@ -533,4 +533,39 @@ public class DBExecute {
         }
     }
 
+    public void updateServerTemperature(int newTemperature){
+
+        statement = dbConnection.getStatementDB();
+        if(statement != null){
+
+            String query = "UPDATE server_info SET temperature='" + newTemperature + "'";
+
+
+            try{
+                int result = statement.executeUpdate(query);
+
+            }catch (Exception ignored){
+            }
+
+        }else{
+        }
+    }
+    public void updateServerWeather(String newWeather){
+
+        statement = dbConnection.getStatementDB();
+        if(statement != null){
+
+            String query = "UPDATE server_info SET weather='" + newWeather + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+            }catch (Exception ignored){
+            }
+
+        }else{
+        }
+    }
+
+
 }
