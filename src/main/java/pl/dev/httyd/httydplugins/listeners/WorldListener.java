@@ -13,6 +13,7 @@ import pl.dev.httyd.httydplugins.database.DBExecute;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -23,13 +24,14 @@ public class WorldListener implements Listener {
     HttydPlugins instance;
     DBExecute dbExecute = new DBExecute();
     Random random = new Random();
+    ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
-    public WorldListener(HttydPlugins instance){
+    public WorldListener(HttydPlugins instance) {
         this.instance = instance;
     }
 
 
-    private String translateDayOfWeek(DayOfWeek dayOfWeek){
+    private String translateDayOfWeek(DayOfWeek dayOfWeek) {
         Map<DayOfWeek, String> daysNameMap = new HashMap<>();
         daysNameMap.put(DayOfWeek.MONDAY, "PONIEDZIALEK");
         daysNameMap.put(DayOfWeek.TUESDAY, "WTOREK");
@@ -55,394 +57,135 @@ public class WorldListener implements Listener {
         String dayMonthString = dayOfMonth + String.valueOf(monthValue);
 
         switch (dayMonthString) {
-            case "11": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "51": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "71": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "111": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "151": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "191": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "231": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "271": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "311": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "32": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "72": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "112": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
+            case "11":
+            case "1811":
+            case "24":
+            case "185":
+            case "37":
+            case "188":
+            case "310":
             case "152": {
-                int newServerYear = serverYear++;
+                int newServerYear = serverYear + 1;
                 setNewServerDate(newDayOfWeek, 1, newServerYear);
                 break;
             }
+            case "51":
+            case "64":
+            case "225":
+            case "77":
+            case "228":
+            case "710":
+            case "2211":
             case "192": {
                 setNewServerDate(newDayOfWeek, 2, serverYear);
                 break;
             }
+            case "71":
+            case "84":
+            case "245":
+            case "97":
+            case "248":
+            case "910":
+            case "2411":
             case "222": {
                 setNewServerDate(newDayOfWeek, 3, serverYear);
                 break;
             }
+            case "111":
+            case "124":
+            case "285":
+            case "137":
+            case "288":
+            case "1310":
+            case "2811":
             case "252": {
                 setNewServerDate(newDayOfWeek, 4, serverYear);
                 break;
             }
-            case "13": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "53": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "93": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "133": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "173": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "213": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "253": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "293": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "24": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "64": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "84": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "124": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "164": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "204": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "244": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "284": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "25": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "65": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "105": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "145": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "185": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "225": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "245": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "285": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "16": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "56": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "96": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "136": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "176": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "216": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "256": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "296": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "37": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "77": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "97": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "137": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "177": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "217": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "257": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "297": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "28": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "68": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "108": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "148": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "188": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "228": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "248": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "288": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "19": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "59": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "99": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "139": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "179": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "219": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "259": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "299": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "310": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "710": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "910": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "1310": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
-            case "1710": {
-                setNewServerDate(newDayOfWeek, 5, serverYear);
-                break;
-            }
-            case "2110": {
-                setNewServerDate(newDayOfWeek, 6, serverYear);
-                break;
-            }
-            case "2510": {
-                setNewServerDate(newDayOfWeek, 7, serverYear);
-                break;
-            }
-            case "2910": {
-                setNewServerDate(newDayOfWeek, 8, serverYear);
-                break;
-            }
-            case "211": {
-                setNewServerDate(newDayOfWeek, 9, serverYear);
-                break;
-            }
-            case "611": {
-                setNewServerDate(newDayOfWeek, 10, serverYear);
-                break;
-            }
-            case "1011": {
-                setNewServerDate(newDayOfWeek, 11, serverYear);
-                break;
-            }
-            case "1411": {
-                setNewServerDate(newDayOfWeek, 12, serverYear);
-                break;
-            }
-            case "1811": {
-                int newServerYear = serverYear++;
-                setNewServerDate(newDayOfWeek, 1, newServerYear);
-                break;
-            }
-            case "2211": {
-                setNewServerDate(newDayOfWeek, 2, serverYear);
-                break;
-            }
-            case "2411": {
-                setNewServerDate(newDayOfWeek, 3, serverYear);
-                break;
-            }
-            case "2811": {
-                setNewServerDate(newDayOfWeek, 4, serverYear);
-                break;
-            }
+            case "151":
+            case "13":
+            case "164":
+            case "16":
+            case "177":
+            case "19":
+            case "1710":
             case "212": {
                 setNewServerDate(newDayOfWeek, 5, serverYear);
                 break;
             }
+            case "191":
+            case "53":
+            case "204":
+            case "56":
+            case "217":
+            case "59":
+            case "2110":
             case "612": {
                 setNewServerDate(newDayOfWeek, 6, serverYear);
                 break;
             }
+            case "231":
+            case "93":
+            case "244":
+            case "96":
+            case "257":
+            case "99":
+            case "2510":
             case "1012": {
                 setNewServerDate(newDayOfWeek, 7, serverYear);
                 break;
             }
+            case "271":
+            case "133":
+            case "284":
+            case "136":
+            case "297":
+            case "139":
+            case "2910":
             case "1412": {
                 setNewServerDate(newDayOfWeek, 8, serverYear);
                 break;
             }
+            case "311":
+            case "173":
+            case "25":
+            case "176":
+            case "28":
+            case "179":
+            case "211":
             case "1812": {
                 setNewServerDate(newDayOfWeek, 9, serverYear);
                 break;
             }
+            case "32":
+            case "213":
+            case "65":
+            case "216":
+            case "68":
+            case "219":
+            case "611":
             case "2212": {
                 setNewServerDate(newDayOfWeek, 10, serverYear);
                 break;
             }
-            case "2612": {
+            case "72":
+            case "253":
+            case "105":
+            case "256":
+            case "259":
+            case "1011":
+            case "2612":
+            case "108": {
                 setNewServerDate(newDayOfWeek, 11, serverYear);
                 break;
             }
+            case "112":
+            case "293":
+            case "145":
+            case "296":
+            case "148":
+            case "1411":
+            case "299":
             case "3012": {
                 setNewServerDate(newDayOfWeek, 12, serverYear);
                 break;
@@ -462,77 +205,67 @@ public class WorldListener implements Listener {
 
     }
 
-    private void setTemperatureWeather(){
+    private void setTemperatureWeather() {
         int serverMonthValue = dbExecute.getServerMonthValue();
 
-        switch (serverMonthValue){
-            case 1:{
+        switch (serverMonthValue) {
+            case 1: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(-3, 3 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 2:{
+            case 2: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(-2, 4 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 3:{
+            case 3: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(1, 8 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 4:{
+            case 4: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(6, 13 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 5:{
+            case 5: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(12, 18 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 6:{
+            case 6:
+            case 9: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(18, 23 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 7:{
+            case 7:
+            case 8: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(21, 26 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 8:{
-                int newTemperature = ThreadLocalRandom.current().nextInt(21, 26 + 1);
-                dbExecute.updateServerTemperature(newTemperature);
-                setWeather(newTemperature);
-                break;
-            }
-            case 9:{
-                int newTemperature = ThreadLocalRandom.current().nextInt(18, 23 + 1);
-                dbExecute.updateServerTemperature(newTemperature);
-                setWeather(newTemperature);
-                break;
-            }
-            case 10:{
+            case 10: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(12, 17 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 11:{
+            case 11: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(7, 12 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
                 break;
             }
-            case 12:{
+            case 12: {
                 int newTemperature = ThreadLocalRandom.current().nextInt(2, 7 + 1);
                 dbExecute.updateServerTemperature(newTemperature);
                 setWeather(newTemperature);
@@ -544,11 +277,11 @@ public class WorldListener implements Listener {
     private void setWeather(int temperature) {
         World world = Bukkit.getWorld("world");
 
-        if(random.nextInt(100)<=30){
-            if(temperature>2){
-                if(random.nextInt(100)<=60) {
-                    for(int i = -480; i<=320; i++){
-                        for (int j = -525; j<=600; j++){
+        if (random.nextInt(100) <= 30) {
+            if (temperature > 2) {
+                if (random.nextInt(100) <= 60) {
+                    for (int i = -480; i <= 320; i++) {
+                        for (int j = -525; j <= 600; j++) {
                             world.setBiome(i, j, Biome.PLAINS);
                         }
                     }
@@ -556,9 +289,9 @@ public class WorldListener implements Listener {
                     world.setStorm(true);
                     world.setThundering(false);
                     world.setWeatherDuration(1728000);
-                }else{
-                    for(int i = -480; i<=320; i++){
-                        for (int j = -525; j<=600; j++){
+                } else {
+                    for (int i = -480; i <= 320; i++) {
+                        for (int j = -525; j <= 600; j++) {
                             world.setBiome(i, j, Biome.PLAINS);
                         }
                     }
@@ -568,9 +301,9 @@ public class WorldListener implements Listener {
                     world.setThunderDuration(600);
                     world.setWeatherDuration(1728000);
                 }
-            }else {
-                for(int i = -480; i<=320; i++){
-                    for (int j = -525; j<=600; j++){
+            } else {
+                for (int i = -480; i <= 320; i++) {
+                    for (int j = -525; j <= 600; j++) {
                         world.setBiome(i, j, Biome.TAIGA_COLD);
                     }
                 }
@@ -579,9 +312,9 @@ public class WorldListener implements Listener {
                 world.setThundering(false);
                 world.setWeatherDuration(1728000);
             }
-        }else {
-            for(int i = -480; i<=320; i++){
-                for (int j = -525; j<=600; j++){
+        } else {
+            for (int i = -480; i <= 320; i++) {
+                for (int j = -525; j <= 600; j++) {
                     world.setBiome(i, j, Biome.PLAINS);
                 }
             }
@@ -590,27 +323,33 @@ public class WorldListener implements Listener {
             world.setThundering(false);
             world.setWeatherDuration(1728000);
         }
-
     }
 
     @EventHandler
-    public void onWorldSave (WorldSaveEvent event){
+    public void onWorldSave(WorldSaveEvent event) {
 
         LocalDate localDateNow = LocalDate.now();
         DayOfWeek dayOfWeek = localDateNow.getDayOfWeek();
         String dayOfWeekTranslated = translateDayOfWeek(dayOfWeek);
         String dayOfWeekServer = dbExecute.getServerDayOfWeek();
 
-        if(!dayOfWeekServer.equals(dayOfWeekTranslated)){
+        if (!dayOfWeekServer.equals(dayOfWeekTranslated)) {
             setNextDay(dayOfWeekTranslated);
             setTemperatureWeather();
-            ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
-            for (Player p: Bukkit.getOnlinePlayers()) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
                 scoreboardInfo.updateScoreboard(p);
             }
+        } else {
+            LocalTime time = LocalTime.now();
+            int hour = time.getHour();
+            int min = time.getMinute();
 
+            if ((hour == 12 && min < 6) || (hour == 18 && min < 6)) {
+                setTemperatureWeather();
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    scoreboardInfo.updateScoreboard(p);
+                }
+            }
         }
-
     }
-
 }

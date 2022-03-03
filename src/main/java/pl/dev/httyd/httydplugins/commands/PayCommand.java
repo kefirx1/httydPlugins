@@ -9,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.Converter;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
+import pl.dev.httyd.httydplugins.ScoreboardInfo;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
 import java.time.LocalTime;
@@ -20,6 +21,7 @@ public class PayCommand  implements CommandExecutor {
     DBExecute dbExecute = new DBExecute();
     LocalTime time = LocalTime.now();
     LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
+    ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -72,6 +74,8 @@ public class PayCommand  implements CommandExecutor {
                                 p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUserTag + ChatColor.GOLD + " przekazal " + amount + " monet " + playerUserTag2 + ChatColor.GOLD + "**" );
                             }
                         }
+                        scoreboardInfo.updateScoreboard(player);
+                        scoreboardInfo.updateScoreboard(player2);
                     }else{
                         player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Cos poszlo nie tak!");
                         return true;

@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
+import pl.dev.httyd.httydplugins.ScoreboardInfo;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
 import java.time.LocalTime;
@@ -14,8 +15,7 @@ import java.util.Objects;
 
 public class PrefixCommand implements CommandExecutor {
 
-
-
+    ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -54,6 +54,7 @@ public class PrefixCommand implements CommandExecutor {
                 player.performCommand("pr createusertag " + newUsertag + " " + newUsertag);
                 player.performCommand("pr setusertag " + player2Name + " " + newUsertag);
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "Prefix zostal zmieniony pomyslenie");
+                scoreboardInfo.updateScoreboard(player2);
                 return true;
             }else {
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "Blad - prefix nie mogl byc zmieniony");

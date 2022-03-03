@@ -118,7 +118,7 @@ public class PlayerListener implements Listener {
         Player player = (Player) e.getWhoClicked();
 
         if (e.getInventory().getTitle().equalsIgnoreCase(ChatColor.WHITE + "" + ChatColor.BOLD + playerClickedName)) {
-            e.setCancelled(false);
+            e.setCancelled(true);
 
             switch (e.getCurrentItem().getType()) {
                 case BOOK_AND_QUILL:{
@@ -195,7 +195,7 @@ public class PlayerListener implements Listener {
             }
 
         }else if (e.getInventory().getTitle().equalsIgnoreCase(ChatColor.WHITE + "" + ChatColor.BOLD + "MOJE MENU")){
-            e.setCancelled(false);
+            e.setCancelled(true);
 
             switch (e.getCurrentItem().getType()) {
                 default:{
@@ -206,7 +206,7 @@ public class PlayerListener implements Listener {
 
 
         }else if (e.getClickedInventory().getTitle().equalsIgnoreCase(ChatColor.RED + "PODAJ PLEC POSTACI")) {
-            e.setCancelled(false);
+            e.setCancelled(true);
 
             switch (e.getCurrentItem().getType()) {
                 case RED_GLAZED_TERRACOTTA:
@@ -226,7 +226,7 @@ public class PlayerListener implements Listener {
             createCharacterCard.guiIslandStep(player);
 
         } else if (e.getClickedInventory().getTitle().equalsIgnoreCase(ChatColor.RED + "  WITAJ " + newPlayerStatistics.prefix + " SKAD POCHODZISZ?  ")) {
-            e.setCancelled(false);
+            e.setCancelled(true);
 
             switch (e.getCurrentItem().getType()) {
                 case DIAMOND_AXE:
@@ -242,7 +242,7 @@ public class PlayerListener implements Listener {
             createCharacterCard.guiQuestionStep1(player);
 
         } else if (e.getClickedInventory().getTitle().equalsIgnoreCase(ChatColor.RED + "" + ChatColor.BOLD + "------1-----")) {
-            e.setCancelled(false);
+            e.setCancelled(true);
 
             switch (e.getCurrentItem().getType()) {
                 case DIRT: {
