@@ -425,6 +425,1067 @@ public class DBExecute {
         }
     }
 
+    public int getPlayerHerbology(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT herbology FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("herbology");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerHerbologyTime(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT herbologyTime FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("herbologyTime");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerHerbologyCrops(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT herbologyCrops FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("herbologyCrops");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBlacksmithing(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT blacksmithing FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("blacksmithing");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBlacksmithingAppearance(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT blacksmithingAppearance FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("blacksmithingAppearance");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBlacksmithingQuality(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT blacksmithingQuality FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("blacksmithingQuality");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBlacksmithingDurability(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT blacksmithingDurability FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("blacksmithingDurability");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerAttack(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT attack FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("attack");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerAttackStrength(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT attackStrength FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("attackStrength");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerAttackSpeed(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT attackSpeed FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("attackSpeed");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerAttackStamina(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT attackStamina FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("attackStamina");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerFarming(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT farming FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("farming");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerFarmingTime(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT farmingTime FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("farmingTime");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerFarmingCrops(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT farmingCrops FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("farmingCrops");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerFarmingAnimals(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT farmingAnimals FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("farmingAnimals");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBrain(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT brain FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("brain");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBrainControl(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT brainControl FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("brainControl");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerBrainPatience(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT brainPatience FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("brainPatience");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerDragons(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT dragons FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("dragons");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerDragonsDomestication(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT dragonsDomestication FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("dragonsDomestication");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerDragonsDuels(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT dragonsDuels FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("dragonsDuels");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerDragonsFlying(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT dragonsFlying FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("dragonsFlying");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+    public int getPlayerDragonsCare(Player player){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = player.getName();
+
+            String query = "SELECT dragonsCare FROM players_statistics WHERE nick = '" + playerName + "'";
+
+            try{
+                ResultSet result = statement.executeQuery(query);
+
+                result.next();
+
+                return result.getInt("dragonsCare");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+    }
+
+
+    public boolean updatePlayerHerbology(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET herbology='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerHerbologyTime(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET herbologyTime='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerHerbologyCrops(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET herbologyCrops='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBlacksmithing(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET blacksmithing='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBlacksmithingAppearance(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET blacksmithingAppearance ='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBlacksmithingQuality(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET blacksmithingQuality='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBlacksmithingDurability(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET blacksmithingDurability='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerAttack(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET attack='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerAttackStrength(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET attackStrength='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerAttackSpeed(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET attackSpeed='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerAttackStamina(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET attackStamina='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerFarming(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET farming='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerFarmingTime(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET farmingTime='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerFarmingCrops(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET farmingCrops='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerFarmingAnimals(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET farmingAnimals='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBrain(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET brain='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBrainControl(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET brainControl='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerBrainPatience(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET brainPatience='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerDragons(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET dragons='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerDragonsDomestication(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET dragonsDomestication='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerDragonsDuels(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET dragonsDuels='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerDragonsFlying(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET dragonsFlying='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerDragonsCare(Player player, int value){
+        statement = dbConnection.getStatementDB();
+        String playerName = player.getName();
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET dragonsCare='" + value + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+
+
     public boolean updatePlayerDescription(String playerName, String description){
         statement = dbConnection.getStatementDB();
 

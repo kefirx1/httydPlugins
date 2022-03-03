@@ -35,7 +35,7 @@ public class PayCommand  implements CommandExecutor {
             int amount;
 
             try{
-                amount = Integer.getInteger(args[1]);
+                amount = Integer.parseInt(args[1]);
             }catch (Exception e){
                 return false;
             }
