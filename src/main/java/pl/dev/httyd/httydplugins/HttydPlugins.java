@@ -29,6 +29,7 @@ public final class HttydPlugins extends JavaPlugin {
         getCommand("kostki").setExecutor(new DiceCommand());
         getCommand("drzwi").setExecutor(new DoorCommand());
         getCommand("sakiewka").setExecutor(new SakiewkaCommand());
+        getCommand("zaplac").setExecutor(new PayCommand());
 
 
     }

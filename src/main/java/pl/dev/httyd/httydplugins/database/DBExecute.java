@@ -490,6 +490,29 @@ public class DBExecute {
         }
     }
 
+    public boolean updatePlayerBalance(Player player, int amount){
+
+        statement = dbConnection.getStatementDB();
+        if(statement != null){
+            String playerName = player.getName();
+
+            String query = "UPDATE players_statistics SET balance='" + amount + "' WHERE nick = '" + playerName + "'";
+
+
+            try{
+                int result = statement.executeUpdate(query);
+
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
     public boolean updateServerDayOfWeek(String newDayOfWeek){
 
         statement = dbConnection.getStatementDB();

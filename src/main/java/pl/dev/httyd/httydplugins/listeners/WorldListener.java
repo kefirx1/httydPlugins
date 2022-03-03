@@ -13,6 +13,7 @@ import pl.dev.httyd.httydplugins.database.DBExecute;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -34,7 +35,7 @@ public class WorldListener implements Listener {
         daysNameMap.put(DayOfWeek.MONDAY, "PONIEDZIALEK");
         daysNameMap.put(DayOfWeek.TUESDAY, "WTOREK");
         daysNameMap.put(DayOfWeek.WEDNESDAY, "SRODA");
-        daysNameMap.put(DayOfWeek.THURSDAY, "CZAWARTEK");
+        daysNameMap.put(DayOfWeek.THURSDAY, "CZWARTEK");
         daysNameMap.put(DayOfWeek.FRIDAY, "PIATEK");
         daysNameMap.put(DayOfWeek.SATURDAY, "SOBOTA");
         daysNameMap.put(DayOfWeek.SUNDAY, "NIEDZIELA");
@@ -546,7 +547,7 @@ public class WorldListener implements Listener {
 
         if(random.nextInt(100)<=30){
             if(temperature>2){
-                if(random.nextInt(100)<=50) {
+                if(random.nextInt(100)<=60) {
                     for(int i = -480; i<=320; i++){
                         for (int j = -525; j<=600; j++){
                             world.setBiome(i, j, Biome.PLAINS);
@@ -555,6 +556,7 @@ public class WorldListener implements Listener {
                     dbExecute.updateServerWeather("DESZCZOWO");
                     world.setStorm(true);
                     world.setThundering(false);
+                    world.setWeatherDuration(1728000);
                 }else{
                     for(int i = -480; i<=320; i++){
                         for (int j = -525; j<=600; j++){
@@ -564,6 +566,8 @@ public class WorldListener implements Listener {
                     dbExecute.updateServerWeather("BURZOWO");
                     world.setStorm(true);
                     world.setThundering(true);
+                    world.setThunderDuration(600);
+                    world.setWeatherDuration(1728000);
                 }
             }else {
                 for(int i = -480; i<=320; i++){
@@ -574,6 +578,7 @@ public class WorldListener implements Listener {
                 dbExecute.updateServerWeather("SNIEZNIE");
                 world.setStorm(true);
                 world.setThundering(false);
+                world.setWeatherDuration(1728000);
             }
         }else {
             for(int i = -480; i<=320; i++){
@@ -584,6 +589,7 @@ public class WorldListener implements Listener {
             dbExecute.updateServerWeather("SLONECZNIE");
             world.setStorm(false);
             world.setThundering(false);
+            world.setWeatherDuration(1728000);
         }
 
     }

@@ -19,7 +19,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.*;
 import pl.dev.httyd.httydplugins.*;
 import pl.dev.httyd.httydplugins.database.DBExecute;
 
@@ -130,9 +129,6 @@ public class PlayerListener implements Listener {
     public void onRightClick(PlayerInteractEntityEvent e) {
         Player player = e.getPlayer();
 
-        LocalTime time = LocalTime.now();
-        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-
 
         apiPR = PowerRanks.getInstance().loadAPI();
         powerRanksExtensions = new PowerRanksExtensions();
@@ -225,6 +221,10 @@ public class PlayerListener implements Listener {
                     //obudz
                     player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + "Obudzono");
                     playerClicked.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + "Obudz sie!");
+                    player.closeInventory();
+                    break;
+                }
+                case STAINED_GLASS_PANE:{
                     player.closeInventory();
                     break;
                 }

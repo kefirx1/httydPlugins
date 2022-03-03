@@ -102,3 +102,8 @@ commands:
     permission: roleplay.player
     permission-message: Nie masz dostepu do tej komendy
     usage: Nie masz sakiewki
+  zaplac:
+    description: Zaplac drugiej osobie okreslona ilosc monet
+    permission: roleplay.player
+    permission-message: Nie masz dostepu do tej komendy
+    usage: Poprawne uzycie - /zaplac [gracz] [ilosc]
