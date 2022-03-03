@@ -97,18 +97,16 @@ public class CreateCharacterCard {
             case "Wandale":{
                 player.teleport(berkCords);
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
-                scoreboardInfo.updateScoreboard(player);
-                denySetnamePer(player);
                 break;
             }
             case "Lupiezcy":{
                 player.teleport(outcastIslandCords);
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
-                scoreboardInfo.updateScoreboard(player);
-                denySetnamePer(player);
                 break;
             }
         }
+        scoreboardInfo.updateScoreboard(player);
+        denySetnamePer(player);
     }
 
     private void denySetnamePer(Player player){

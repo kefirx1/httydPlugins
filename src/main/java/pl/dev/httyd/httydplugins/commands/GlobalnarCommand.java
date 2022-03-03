@@ -18,7 +18,6 @@ public class GlobalnarCommand implements CommandExecutor {
             LocalTime time = LocalTime.now();
             LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
 
-
             Player player = (Player) sender;
 
             String msg = String.join(" ", args);

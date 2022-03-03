@@ -29,90 +29,34 @@ import static pl.dev.httyd.httydplugins.CreateCharacterCard.newPlayerStatistics;
 
 public class PlayerListener implements Listener {
 
+    HttydPlugins instance;
     PowerRanksAPI apiPR;
     PowerRanksExtensions powerRanksExtensions;
     String playerName;
     String playerRank;
     String playerPrefix;
     String playerUserTag;
-
     String playerClickedName;
     String playerClickedRank;
     String playerClickedPrefix;
     String playerClickedUserTag;
     Player playerClicked;
 
+    CreateCharacterCard createCharacterCard = new CreateCharacterCard(instance);
     DBExecute dbExecute = new DBExecute();
     CreatePlayerMenu createPlayerMenu = new CreatePlayerMenu();
     ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
-
-    HttydPlugins instance;
+    Converter converter = new Converter();
 
     public PlayerListener(HttydPlugins instance){
         this.instance = instance;
     }
 
-    CreateCharacterCard createCharacterCard = new CreateCharacterCard(instance);
+
 
     World world = Bukkit.getWorld("world");
     Location locationOfStart = new Location(world, -35., 89., 246.);
     ArrayList<Integer> stats = new ArrayList<>();
-
-
-    private ChatColor convertColor(String colorMC){
-        Map<String, ChatColor> colorsMap = new HashMap<>();
-        colorsMap.put("&0", ChatColor.BLACK);
-        colorsMap.put("&1", ChatColor.DARK_BLUE);
-        colorsMap.put("&2", ChatColor.DARK_GREEN);
-        colorsMap.put("&3", ChatColor.DARK_AQUA);
-        colorsMap.put("&4", ChatColor.DARK_RED);
-        colorsMap.put("&5", ChatColor.DARK_PURPLE);
-        colorsMap.put("&6", ChatColor.GOLD);
-        colorsMap.put("&7", ChatColor.GRAY);
-        colorsMap.put("&8", ChatColor.DARK_GRAY);
-        colorsMap.put("&9", ChatColor.BLUE);
-        colorsMap.put("&a", ChatColor.GREEN);
-        colorsMap.put("&b", ChatColor.AQUA);
-        colorsMap.put("&c", ChatColor.RED);
-        colorsMap.put("&d", ChatColor.LIGHT_PURPLE);
-        colorsMap.put("&e", ChatColor.YELLOW);
-        colorsMap.put("&f", ChatColor.WHITE);
-        colorsMap.put("&l", ChatColor.BOLD);
-        colorsMap.put("&n", ChatColor.UNDERLINE);
-        colorsMap.put("&o", ChatColor.ITALIC);
-        colorsMap.put("&r", ChatColor.RESET);
-        colorsMap.put("&m", ChatColor.STRIKETHROUGH);
-        colorsMap.put("&k", ChatColor.MAGIC);
-        return colorsMap.get(colorMC);
-    }
-
-    private String getPlayerPrefixWithColor(String basicPrefix) {
-        if (basicPrefix.contains("&")) {
-            String[] playerPrefixList = basicPrefix.split("");
-            StringBuilder convertedPrefix = new StringBuilder("");
-
-            for (int i = 0; i < playerPrefixList.length; i++) {
-
-                if (Objects.equals(playerPrefixList[i], "&")) {
-                    String color = playerPrefixList[i] + playerPrefixList[i + 1];
-
-                    ChatColor newColor = convertColor(color);
-
-                    convertedPrefix.append(newColor);
-                    i++;
-                    continue;
-                }
-
-                convertedPrefix.append(playerPrefixList[i]);
-            }
-
-            return convertedPrefix.toString();
-
-        } else {
-            return basicPrefix;
-        }
-    }
-
 
     private boolean isPassenger(Player player){
         List<Entity> passengersList = player.getPassengers();
@@ -139,20 +83,20 @@ public class PlayerListener implements Listener {
 
             playerName = player.getName();
             playerRank = apiPR.getPrimaryRank(player);
-            playerPrefix = getPlayerPrefixWithColor(apiPR.getPrefix(playerRank));
+            playerPrefix = converter.getPlayerPrefixWithColor(apiPR.getPrefix(playerRank));
             playerUserTag = "null";
 
             playerClickedName = playerClicked.getName();
             playerClickedRank = apiPR.getPrimaryRank(playerClicked);
-            playerClickedPrefix = getPlayerPrefixWithColor(apiPR.getPrefix(playerClickedRank));
+            playerClickedPrefix = converter.getPlayerPrefixWithColor(apiPR.getPrefix(playerClickedRank));
             playerClickedUserTag = "null";
 
             try{
-                playerUserTag = getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
+                playerUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
             }catch (Exception ignored){
             }
             try{
-                playerClickedUserTag = getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(playerClicked));
+                playerClickedUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(playerClicked));
             }catch (Exception ignored){
             }
 
@@ -179,7 +123,12 @@ public class PlayerListener implements Listener {
             switch (e.getCurrentItem().getType()) {
                 case BOOK_AND_QUILL:{
                     //opis
-                    String playerDesc = dbExecute.getPlayerDesc(playerClicked);
+                    String playerDesc;
+                    try{
+                        playerDesc = dbExecute.getPlayerDesc(playerClicked);
+                    }catch (Exception ex){
+                        playerDesc = "Blad";
+                    }
                     player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Opis] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerDesc);
                     player.closeInventory();
                     break;
@@ -192,14 +141,24 @@ public class PlayerListener implements Listener {
                 }
                 case BONE:{
                     //stan
-                    String playerCondition = dbExecute.getPlayerCondition(playerClicked);
+                    String playerCondition;
+                    try{
+                        playerCondition = dbExecute.getPlayerCondition(playerClicked);
+                    }catch (Exception ex){
+                        playerCondition = "Blad";
+                    }
                     player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Stan] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerCondition);
                     player.closeInventory();
                     break;
                 }
                 case SKULL_ITEM:{
                     //wizerunek
-                    String playerView = dbExecute.getPlayerView(playerClicked);
+                    String playerView;
+                    try{
+                        playerView = dbExecute.getPlayerView(playerClicked);
+                    }catch (Exception ex){
+                        playerView = "Blad";
+                    }
                     player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Wizerunek] " + playerClickedUserTag + ChatColor.GOLD + ": " + playerView);
                     player.closeInventory();
                     break;
@@ -346,13 +305,13 @@ public class PlayerListener implements Listener {
         PowerRanksAPI apiPR = PowerRanks.getInstance().loadAPI();
         PowerRanksExtensions powerRanksExtensions = new PowerRanksExtensions();
 
-        String msg = getPlayerPrefixWithColor(e.getMessage());
+        String msg = converter.getPlayerPrefixWithColor(e.getMessage());
         String playerName = player.getName();
         String playerRank = apiPR.getPrimaryRank(player);
-        String playerPrefix = getPlayerPrefixWithColor(apiPR.getPrefix(playerRank));
+        String playerPrefix = converter.getPlayerPrefixWithColor(apiPR.getPrefix(playerRank));
         String playerUserTag = "";
         try{
-            playerUserTag = getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
+            playerUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
         }catch (Exception ignored){
         }
 
