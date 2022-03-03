@@ -52,7 +52,7 @@ public class PlayerListener implements Listener {
         this.instance = instance;
     }
 
-    CreateCharacterCard createCharacterCard = new CreateCharacterCard();
+    CreateCharacterCard createCharacterCard = new CreateCharacterCard(instance);
 
     World world = Bukkit.getWorld("world");
     Location locationOfStart = new Location(world, -35., 89., 246.);

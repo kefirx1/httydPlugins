@@ -16,6 +16,15 @@ import java.util.UUID;
 
 public class CreateCharacterCard {
 
+    public CreateCharacterCard(HttydPlugins instance){
+        this.instance = instance;
+    }
+
+    public CreateCharacterCard(){
+    }
+
+    HttydPlugins instance;
+
     public static PlayerStatistics newPlayerStatistics = new PlayerStatistics("", "", "-", 0, "", "", 0, "-", "Zdrowy", "-" ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     World world = Bukkit.getWorld("world");
     Location berkCords = new Location(world, -77, 97, 217);
@@ -23,9 +32,6 @@ public class CreateCharacterCard {
     ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     DBExecute dbExecute = new DBExecute();
-
-
-
 
 
     public void personalInfoQuestion(Player p) {
@@ -92,15 +98,26 @@ public class CreateCharacterCard {
                 player.teleport(berkCords);
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
                 scoreboardInfo.updateScoreboard(player);
+                denySetnamePer(player);
                 break;
             }
             case "Lupiezcy":{
                 player.teleport(outcastIslandCords);
                 player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
                 scoreboardInfo.updateScoreboard(player);
+                denySetnamePer(player);
                 break;
             }
         }
+    }
+
+    private void denySetnamePer(Player player){
+        HashMap<UUID, PermissionAttachment> perms = new HashMap<>();
+        PermissionAttachment attachment = player.addAttachment(instance);
+        perms.put(player.getUniqueId(), attachment);
+        PermissionAttachment pperms = perms.get(player.getUniqueId());
+
+        pperms.setPermission("create.setname", true);
     }
 
     public void guiSexStep(Player p){
