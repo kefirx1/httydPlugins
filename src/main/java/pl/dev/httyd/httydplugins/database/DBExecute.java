@@ -129,7 +129,6 @@ public class DBExecute {
                 ResultSet dateOfBirthPlayerQueryResult = statement.executeQuery(query);
 
                 dateOfBirthPlayerQueryResult.next();
-
                 return dateOfBirthPlayerQueryResult.getInt("dateOfBirth");
 
             }catch (Exception ignored){
@@ -153,7 +152,6 @@ public class DBExecute {
                 ResultSet prefixPlayerQueryResult = statement.executeQuery(query);
 
                 prefixPlayerQueryResult.next();
-
                 return prefixPlayerQueryResult.getString("prefix");
 
             } catch (Exception ignored) {
@@ -177,7 +175,6 @@ public class DBExecute {
                 ResultSet islandPlayerQueryResult = statement.executeQuery(query);
 
                 islandPlayerQueryResult.next();
-
                 return islandPlayerQueryResult.getString("island");
 
             } catch (Exception ignored) {
@@ -201,7 +198,6 @@ public class DBExecute {
                 ResultSet suffixPlayerQueryResult = statement.executeQuery(query);
 
                 suffixPlayerQueryResult.next();
-
                 return suffixPlayerQueryResult.getString("suffix");
 
             } catch (Exception ignored) {
@@ -226,7 +222,6 @@ public class DBExecute {
                 ResultSet conditionPlayerQueryResult = statement.executeQuery(query);
 
                 conditionPlayerQueryResult.next();
-
                 return conditionPlayerQueryResult.getString("conditionPlayer");
 
             }catch (Exception ignored){
@@ -250,7 +245,6 @@ public class DBExecute {
                 ResultSet viewPlayerQueryResult = statement.executeQuery(query);
 
                 viewPlayerQueryResult.next();
-
                 return viewPlayerQueryResult.getString("playerView");
 
             }catch (Exception ignored){
@@ -273,7 +267,6 @@ public class DBExecute {
                 ResultSet genderPlayerQueryResult = statement.executeQuery(query);
 
                 genderPlayerQueryResult.next();
-
                 return genderPlayerQueryResult.getString("sex");
 
             }catch (Exception ignored){
@@ -296,7 +289,6 @@ public class DBExecute {
                 ResultSet dayOfWeekQueryResult = statement.executeQuery(query);
 
                 dayOfWeekQueryResult.next();
-
                 return dayOfWeekQueryResult.getString("dayOfWeek");
 
             }catch (Exception ignored){
@@ -319,7 +311,6 @@ public class DBExecute {
                 ResultSet monthQueryResult = statement.executeQuery(query);
 
                 monthQueryResult.next();
-
                 return monthQueryResult.getInt("month");
 
             }catch (Exception ignored){
@@ -342,7 +333,6 @@ public class DBExecute {
                 ResultSet yearQueryResult = statement.executeQuery(query);
 
                 yearQueryResult.next();
-
                 return yearQueryResult.getInt("year");
 
             }catch (Exception ignored){
@@ -365,7 +355,6 @@ public class DBExecute {
                 ResultSet temperatureQueryResult = statement.executeQuery(query);
 
                 temperatureQueryResult.next();
-
                 return temperatureQueryResult.getInt("temperature");
 
             }catch (Exception ignored){
@@ -388,7 +377,6 @@ public class DBExecute {
                 ResultSet weatherQueryResult = statement.executeQuery(query);
 
                 weatherQueryResult.next();
-
                 return weatherQueryResult.getString("weather");
 
             }catch (Exception ignored){
@@ -413,7 +401,6 @@ public class DBExecute {
                 ResultSet balanceQueryResult = statement.executeQuery(query);
 
                 balanceQueryResult.next();
-
                 return balanceQueryResult.getInt("balance");
 
             }catch (Exception ignored){
@@ -438,7 +425,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("herbology");
 
             }catch (Exception ignored){
@@ -463,7 +449,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("herbologyTime");
 
             }catch (Exception ignored){
@@ -488,7 +473,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("herbologyCrops");
 
             }catch (Exception ignored){
@@ -513,7 +497,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("blacksmithing");
 
             }catch (Exception ignored){
@@ -538,7 +521,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("blacksmithingAppearance");
 
             }catch (Exception ignored){
@@ -563,7 +545,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("blacksmithingQuality");
 
             }catch (Exception ignored){
@@ -588,7 +569,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("blacksmithingDurability");
 
             }catch (Exception ignored){
@@ -613,7 +593,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("attack");
 
             }catch (Exception ignored){
@@ -638,7 +617,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("attackStrength");
 
             }catch (Exception ignored){
@@ -663,7 +641,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("attackSpeed");
 
             }catch (Exception ignored){
@@ -688,7 +665,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("attackStamina");
 
             }catch (Exception ignored){
@@ -713,7 +689,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("farming");
 
             }catch (Exception ignored){
@@ -738,7 +713,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("farmingTime");
 
             }catch (Exception ignored){
@@ -763,7 +737,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("farmingCrops");
 
             }catch (Exception ignored){
@@ -788,7 +761,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("farmingAnimals");
 
             }catch (Exception ignored){
@@ -813,7 +785,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("brain");
 
             }catch (Exception ignored){
@@ -838,7 +809,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("brainControl");
 
             }catch (Exception ignored){
@@ -863,7 +833,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("brainPatience");
 
             }catch (Exception ignored){
@@ -888,7 +857,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("dragons");
 
             }catch (Exception ignored){
@@ -913,7 +881,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("dragonsDomestication");
 
             }catch (Exception ignored){
@@ -938,7 +905,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("dragonsDuels");
 
             }catch (Exception ignored){
@@ -963,7 +929,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("dragonsFlying");
 
             }catch (Exception ignored){
@@ -988,7 +953,6 @@ public class DBExecute {
                 ResultSet result = statement.executeQuery(query);
 
                 result.next();
-
                 return result.getInt("dragonsCare");
 
             }catch (Exception ignored){
@@ -1010,7 +974,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1031,7 +994,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1052,7 +1014,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1073,7 +1034,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1094,7 +1054,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1115,7 +1074,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1136,7 +1094,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1157,7 +1114,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1178,7 +1134,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1199,7 +1154,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1220,7 +1174,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1241,7 +1194,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1262,7 +1214,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1283,7 +1234,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1304,7 +1254,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1325,7 +1274,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1346,7 +1294,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1367,7 +1314,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1388,7 +1334,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1409,7 +1354,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1430,7 +1374,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1451,7 +1394,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1472,7 +1414,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1495,7 +1436,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1516,7 +1456,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1539,7 +1478,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1562,7 +1500,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1584,7 +1521,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1605,7 +1541,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
                 return result > 0;
 
             }catch (Exception ignored){
@@ -1627,7 +1562,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
             }catch (Exception ignored){
             }
 
@@ -1643,7 +1577,6 @@ public class DBExecute {
 
             try{
                 int result = statement.executeUpdate(query);
-
             }catch (Exception ignored){
             }
 

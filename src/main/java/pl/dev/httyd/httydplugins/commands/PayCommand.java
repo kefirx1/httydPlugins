@@ -34,12 +34,21 @@ public class PayCommand  implements CommandExecutor {
                 return false;
             }
 
-            int amount;
+            if(player.getName().equals(player2.getName())){
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Nie mozesz przekazac sam sobie pieniedzy!");
+                return true;
+            }
 
+            int amount;
             try{
                 amount = Integer.parseInt(args[1]);
             }catch (Exception e){
                 return false;
+            }
+
+            if(amount<=0){
+                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Nie mozesz zaplacic nic!");
+                return true;
             }
 
             int playerBalance = dbExecute.getPlayerBalance(player);

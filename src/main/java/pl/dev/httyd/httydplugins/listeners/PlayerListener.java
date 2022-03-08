@@ -55,7 +55,7 @@ public class PlayerListener implements Listener {
 
 
     World world = Bukkit.getWorld("world");
-    Location locationOfStart = new Location(world, -35., 89., 246.);
+    Location locationOfStart = new Location(world, 29996, 4, 30000);
     ArrayList<Integer> stats = new ArrayList<>();
 
     private boolean isPassenger(Player player){
