@@ -1536,7 +1536,7 @@ public class DBExecute {
         statement = dbConnection.getStatementDB();
         if(statement != null){
 
-            String query = "UPDATE server_info SET dayOfWeek='" + newDayOfWeek + "'";
+            String query = "UPDATE server_info SET dayOfWeek='" + newDayOfWeek + "'," + " month='" + monthValue + "'," + "year='" + newYear + "'";
 
 
             try{

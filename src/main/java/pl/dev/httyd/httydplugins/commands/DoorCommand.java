@@ -29,6 +29,24 @@ public class DoorCommand implements CommandExecutor {
         LocalTime time = LocalTime.now();
         LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
 
+
+        Location bigDoorBlockFront1 = new Location(world, -38, 119, 192 ); //deski debowe
+        Location bigDoorBlockFront2 = new Location(world, -38, 120, 192 ); //wood_wall_3
+        Location bigDoorBlockFront3 = new Location(world, -38, 121, 192 );
+        Location bigDoorBlockFront4 = new Location(world, -38, 122, 192 );
+        Location bigDoorBlockFront5 = new Location(world, -38, 123, 192 );
+        Location bigDoorBlockFront6 = new Location(world, -38, 124, 192 );
+        Location bigDoorBlockFront7 = new Location(world, -38, 125, 192 );
+        Location bigDoorBlockFront9 = new Location(world, -38, 126, 192 );
+        Location bigDoorBlockFront10 = new Location(world, -38, 127, 192 );
+        Location bigDoorBlockFront11 = new Location(world, -38, 128, 192 );
+        Location bigDoorBlockFront12 = new Location(world, -38, 129, 192 );
+        Location bigDoorBlockFront13 = new Location(world, -38, 130, 192 );
+        Location bigDoorBlockFront14 = new Location(world, -38, 131, 192 ); //deski debowe
+
+
+
+
         Location gate1Block1 = new Location(world, 6, 80, 199);
         Location gate1Block2 = new Location(world, 7, 80, 199);
         Location gate1Block3 = new Location(world, 8, 80, 199);
@@ -71,7 +89,51 @@ public class DoorCommand implements CommandExecutor {
                 if(bigDoorLocation.distance(playerLocation) > 4){
                     return false;
                 }else{
-                    if(isOpened(bigDoorLocation)){
+                    if(isOpened(bigDoorBlockFront1)){
+                        bigDoorBlockFront1.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront2.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront3.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront4.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront5.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront6.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront7.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront9.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront10.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront11.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront12.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront13.getBlock().setType(Material.WOOD);
+                        bigDoorBlockFront14.getBlock().setType(Material.WOOD);
+
+                        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.YELLOW + "*Zamknales drzwi*");
+                        for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
+                            if (entity instanceof Player) {
+                                Player p = (Player) entity;
+                                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUserTag  + ChatColor.GOLD + " zamknal drzwi**");
+                            }
+                        }
+
+                    }else{
+                        bigDoorBlockFront1.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront2.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront3.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront4.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront5.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront6.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront7.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront9.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront10.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront11.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront12.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront13.getBlock().setType(Material.AIR);
+                        bigDoorBlockFront14.getBlock().setType(Material.AIR);
+
+                        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.YELLOW + "*Otworzyles drzwi*");
+                        for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
+                            if (entity instanceof Player) {
+                                Player p = (Player) entity;
+                                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUserTag  + ChatColor.GOLD + " otworzyl drzwi**");
+                            }
+                        }
 
                     }
                 }
@@ -141,7 +203,7 @@ public class DoorCommand implements CommandExecutor {
                         for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
                             if (entity instanceof Player) {
                                 Player p = (Player) entity;
-                                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "** " + playerUserTag  + ChatColor.GOLD + " otworzyl brame*");
+                                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUserTag  + ChatColor.GOLD + " otworzyl brame**");
                             }
                         }
                     }
