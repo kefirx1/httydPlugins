@@ -34,13 +34,8 @@ public class CreateCharacterCard {
     DBExecute dbExecute = new DBExecute();
 
 
-    public void personalInfoQuestion(Player p) {
-
-        LocalTime time = LocalTime.now();
-        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-
-        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.DARK_RED + "[Karczmarz]: " + ChatColor.RESET + ChatColor.GRAY + "Witaj przybyszu, jak sie nazywasz?");
-        p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED +"[POMOC]: Uzyj /setname [Imie] [Nazwisko] [wiek] do wybrnia imienia i nazwiska swojej postaci - /setname Martin Wilson 30");
+    public void personalInfoQuestion(Player player) {
+        MessagesDataClass.cPMInnkeeper(player);
     }
 
     public void setStatistics(ArrayList<Integer> stats){
@@ -82,10 +77,7 @@ public class CreateCharacterCard {
             pperms.setPermission("roleplay.narrator", false);
             teleportToIsland(player);
         }else{
-            LocalTime time = LocalTime.now();
-            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-
-            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.RED + "[LOG]: Niestety nie udalo sie dodac karty postaci, popros moderatora na /helpop o pomoc :c");
+            MessagesDataClass.cPMCharacterCardError(player);
         }
     }
 
@@ -96,12 +88,12 @@ public class CreateCharacterCard {
         switch (newPlayerStatistics.island){
             case "Wandale":{
                 player.teleport(berkCords);
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[WANDALE] WITAMY!");
+                MessagesDataClass.cPMWandale(player);
                 break;
             }
             case "Lupiezcy":{
                 player.teleport(outcastIslandCords);
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.BOLD + "" + ChatColor.GOLD + "[LUPIEZCY] WITAMY!");
+                MessagesDataClass.cPMLupiezcy(player);
                 break;
             }
         }

@@ -1,15 +1,13 @@
 package pl.dev.httyd.httydplugins.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.Converter;
+import pl.dev.httyd.httydplugins.MessagesDataClass;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 import pl.dev.httyd.httydplugins.database.DBExecute;
-
-import java.time.LocalTime;
 
 public class ViewCommand implements CommandExecutor {
 
@@ -20,8 +18,6 @@ public class ViewCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length > 0) {
 
-            LocalTime time = LocalTime.now();
-            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
             Player player = (Player) sender;
 
             if(args[0].equals("sprawdz")){
@@ -34,7 +30,7 @@ public class ViewCommand implements CommandExecutor {
 
                 String playerView = dbExecute.getPlayerView(player);
 
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "[Wizerunek] " + playerUserTag + ChatColor.GOLD + ": " + playerView);
+                MessagesDataClass.vCPlayerView(player, playerUserTag, playerView);
 
                 return true;
             }else{
@@ -43,10 +39,10 @@ public class ViewCommand implements CommandExecutor {
                 String newView = String.join(" ", args);
 
                 if(dbExecute.updatePlayerView(playerName, newView)){
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_GREEN + "Wizerunek postaci zostal zmieniony!");
+                    MessagesDataClass.vCPlayerViewChange(player);
                     return true;
                 }else{
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "Wizerunek postaci nie mogl byc zmieniony");
+                    MessagesDataClass.vCPlayerViewError(player);
                     return true;
                 }
             }

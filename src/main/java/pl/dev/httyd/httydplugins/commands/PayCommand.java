@@ -1,26 +1,21 @@
 package pl.dev.httyd.httydplugins.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.Converter;
+import pl.dev.httyd.httydplugins.MessagesDataClass;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 import pl.dev.httyd.httydplugins.ScoreboardInfo;
 import pl.dev.httyd.httydplugins.database.DBExecute;
-
-import java.time.LocalTime;
 import java.util.Objects;
 
 public class PayCommand  implements CommandExecutor {
 
     Converter converter = new Converter();
     DBExecute dbExecute = new DBExecute();
-    LocalTime time = LocalTime.now();
-    LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
     ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
 
     @Override
@@ -35,7 +30,7 @@ public class PayCommand  implements CommandExecutor {
             }
 
             if(player.getName().equals(player2.getName())){
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Nie mozesz przekazac sam sobie pieniedzy!");
+                MessagesDataClass.payCFailedU(player);
                 return true;
             }
 
@@ -47,7 +42,7 @@ public class PayCommand  implements CommandExecutor {
             }
 
             if(amount<=0){
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Nie mozesz zaplacic nic!");
+                MessagesDataClass.payCZero(player);
                 return true;
             }
 
@@ -58,7 +53,7 @@ public class PayCommand  implements CommandExecutor {
             int newPlayer2Balance = player2Balance+amount;
 
             if(newPlayer2Balance<0){
-                player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Nie masz wystarczajacej ilosci monet!");
+                MessagesDataClass.payCTooLittle(player);
             }else{
 
                 PowerRanksExtensions powerRanksExtensions = new PowerRanksExtensions();
@@ -69,28 +64,22 @@ public class PayCommand  implements CommandExecutor {
                     playerUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
                     playerUserTag2 = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player2));
                 }catch (Exception ignored){
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Cos poszlo nie tak!");
+                    MessagesDataClass.payCFailed(player);
                     return true;
                 }
 
 
                 if(dbExecute.updatePlayerBalance(player, newPlayerBalance)){
                     if(dbExecute.updatePlayerBalance(player2, newPlayer2Balance)){
-                        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.YELLOW + "*Przekazales " + amount + " monet " + playerUserTag2 + ChatColor.YELLOW + "*" );
-                        for (Entity entity : player.getNearbyEntities(3, 3, 3)) {
-                            if (entity instanceof Player) {
-                                Player p = (Player) entity;
-                                p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.GOLD + "**" + playerUserTag + ChatColor.GOLD + " przekazal " + amount + " monet " + playerUserTag2 + ChatColor.GOLD + "**" );
-                            }
-                        }
+                        MessagesDataClass.payCCorrect(player, playerUserTag, playerUserTag2, amount);
                         scoreboardInfo.updateScoreboard(player);
                         scoreboardInfo.updateScoreboard(player2);
                     }else{
-                        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Cos poszlo nie tak!");
+                        MessagesDataClass.payCFailed(player);
                         return true;
                     }
                 }else{
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + ChatColor.DARK_RED + "" + ChatColor.BOLD + "Cos poszlo nie tak!");
+                    MessagesDataClass.payCFailed(player);
                     return true;
                 }
             }

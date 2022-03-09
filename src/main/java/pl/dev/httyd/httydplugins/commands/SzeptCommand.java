@@ -2,15 +2,13 @@ package pl.dev.httyd.httydplugins.commands;
 
 import nl.svenar.PowerRanks.PowerRanks;
 import nl.svenar.PowerRanks.api.PowerRanksAPI;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.Converter;
+import pl.dev.httyd.httydplugins.MessagesDataClass;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
-import java.time.LocalTime;
 
 public class SzeptCommand implements CommandExecutor {
 
@@ -20,10 +18,6 @@ public class SzeptCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if(args.length>0){
-
-            LocalTime time = LocalTime.now();
-            LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-
 
             Player player = (Player) sender;
 
@@ -39,15 +33,7 @@ public class SzeptCommand implements CommandExecutor {
                 playerUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(player));
             }catch (Exception ignored){
             }
-
-            player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ChatColor.BOLD + "" + ChatColor.DARK_GRAY + " [szepcze]" + ChatColor.RESET + ChatColor.DARK_GRAY + ": " + ChatColor.GRAY + msg );
-            for (Entity entity : player.getNearbyEntities(3, 3, 3)) {
-                if (entity instanceof Player) {
-                    Player p = (Player) entity;
-                    p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ChatColor.BOLD + "" + ChatColor.DARK_GRAY + " [szepcze]" + ChatColor.RESET + ChatColor.DARK_GRAY + ": " + ChatColor.GRAY + msg );
-                }
-            }
-
+            MessagesDataClass.sCWhisper(player, playerPrefix, playerUserTag, playerName, msg);
             return true;
         }else{
             return false;

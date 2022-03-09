@@ -1,15 +1,13 @@
 package pl.dev.httyd.httydplugins.commands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pl.dev.httyd.httydplugins.Converter;
+import pl.dev.httyd.httydplugins.MessagesDataClass;
 import pl.dev.httyd.httydplugins.PowerRanksExtensions;
 
-import java.time.LocalTime;
 import java.util.Random;
 
 public class TryCommand implements CommandExecutor {
@@ -18,10 +16,6 @@ public class TryCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-        LocalTime time = LocalTime.now();
-        LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
-
 
         Random random = new Random();
 
@@ -40,21 +34,9 @@ public class TryCommand implements CommandExecutor {
                 int value = Integer.parseInt(args[0]);
 
                 if(random.nextInt(100) <= value){
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
-                    for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
-                        if (entity instanceof Player) {
-                            Player p = (Player) entity;
-                            p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_GREEN + ChatColor.BOLD + " Udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
-                        }
-                    }
+                    MessagesDataClass.tCWin(player, playerUserTag, value);
                 }else {
-                    player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
-                    for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
-                        if (entity instanceof Player) {
-                            Player p = (Player) entity;
-                            p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " + playerUserTag + " " + ChatColor.WHITE + player.getName() + ":" + ChatColor.DARK_RED + ChatColor.BOLD + " Nie udalo sie! " + ChatColor.YELLOW + "[" + value + "% szansy na powodzenia]");
-                        }
-                    }
+                    MessagesDataClass.tCFailed(player, playerUserTag, value);
                 }
 
             }catch (Exception e){
