@@ -17,6 +17,8 @@ public class CreatePlayerMenu {
 
     public void showGUI(Player player, String playerClickedName){
 
+        Player player2 = getDestinationPlayer(playerClickedName);
+
         Inventory menuPlayer = Bukkit.getServer().createInventory(null, 45, ChatColor.WHITE + "" + ChatColor.BOLD + playerClickedName);
 
         if(Objects.equals(player.getName(), playerClickedName)){
@@ -26,6 +28,7 @@ public class CreatePlayerMenu {
         ItemStack descPlayer = new ItemStack(Material.BOOK_AND_QUILL);
         ItemStack viewPlayer = new ItemStack(Material.SKULL_ITEM);
         ItemStack genderPlayer = null;
+        ItemStack wettingPlayer = null;
         ItemStack onPlayer = new ItemStack(Material.SADDLE);
         ItemStack conditionPlayer = new ItemStack(Material.BONE);
         ItemStack catchPlayer = new ItemStack(Material.LEASH);
@@ -44,6 +47,52 @@ public class CreatePlayerMenu {
                 genderPlayer = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 13);
                 break;
             }
+        }
+
+        ItemMeta wettingPlayerMeta;
+
+        switch (dbExecute.getPlayerWetting(player2)){
+            case 0:
+            case 1:{
+                break;
+            }
+            case 2:
+            case 3:{
+                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 8);
+                wettingPlayerMeta = wettingPlayer.getItemMeta();
+                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jego ubrania sa lekko zmoczone");
+                wettingPlayer.setItemMeta(wettingPlayerMeta);
+                menuPlayer.setItem(30, wettingPlayer);
+                break;
+            }
+            case 4:
+            case 5:{
+                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 2);
+                wettingPlayerMeta = wettingPlayer.getItemMeta();
+                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Ma przemoczone ubrania");
+                wettingPlayer.setItemMeta(wettingPlayerMeta);
+                menuPlayer.setItem(30, wettingPlayer);
+                break;
+            }
+            case 6:
+            case 7:{
+                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 9);
+                wettingPlayerMeta = wettingPlayer.getItemMeta();
+                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest całkowicie mokry");
+                wettingPlayer.setItemMeta(wettingPlayerMeta);
+                menuPlayer.setItem(30, wettingPlayer);
+                break;
+            }
+            case 8:
+            case 9:{
+                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 11);
+                wettingPlayerMeta = wettingPlayer.getItemMeta();
+                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest mokry i trzesie sie z zimna");
+                wettingPlayer.setItemMeta(wettingPlayerMeta);
+                menuPlayer.setItem(30, wettingPlayer);
+                break;
+            }
+
         }
 
         ItemMeta descPlayerMeta = descPlayer.getItemMeta();
@@ -85,6 +134,15 @@ public class CreatePlayerMenu {
         player.openInventory(menuPlayer);
 
 
+    }
+
+    private Player getDestinationPlayer(String arg) {
+        for (Player p: Bukkit.getOnlinePlayers()) {
+            if(Objects.equals(p.getName(), arg)){
+                return p;
+            }
+        }
+        return null;
     }
 
 }

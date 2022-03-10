@@ -171,10 +171,6 @@ public class PlayerListener implements Listener {
                     player.closeInventory();
                     break;
                 }
-                case STAINED_GLASS_PANE:{
-                    player.closeInventory();
-                    break;
-                }
                 default:{
                     player.closeInventory();
                     break;

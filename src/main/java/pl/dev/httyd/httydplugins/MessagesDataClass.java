@@ -332,4 +332,26 @@ public class MessagesDataClass {
             p.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.GOLD + "[" + ChatColor.DARK_RED + "Ogloszenie" + ChatColor.GOLD +"]: " + ChatColor.GREEN + msg);
         }
     }
+
+    public static void wLWetting2(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Na Twoich ubraniach zaczynaja pojawiac sie coraz to wieksze krople deszczu**");
+    }
+
+    public static void wLWetting4(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Twoje ubrania sa przemoczone**");
+    }
+
+    public static void wLWetting6(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Jestes calkowcie mokry od stop po glowe**");
+    }
+
+    public static void wLWetting8(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Procz calkowitego przemoczenia, z kazda sekunda zaczyna Ci sie robic coraz to zimniej**");
+    }
+
+    public static void wLWetting9(Player player, String playerPrefix, String playerUserTag, String playerName){
+        String message = ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*Trzesie sie z zimna*";
+        player.sendMessage(message);
+        sendToAnotherPlayers12(player, message);
+    }
 }

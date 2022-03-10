@@ -1,16 +1,18 @@
 package pl.dev.httyd.httydplugins.listeners;
 
+import nl.svenar.PowerRanks.PowerRanks;
+import nl.svenar.PowerRanks.api.PowerRanksAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldSaveEvent;
-import pl.dev.httyd.httydplugins.HttydPlugins;
-import pl.dev.httyd.httydplugins.ScoreboardInfo;
+import pl.dev.httyd.httydplugins.*;
 import pl.dev.httyd.httydplugins.database.DBExecute;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,6 +27,7 @@ public class WorldListener implements Listener {
     DBExecute dbExecute = new DBExecute();
     Random random = new Random();
     ScoreboardInfo scoreboardInfo = new ScoreboardInfo();
+    Converter converter = new Converter();
 
     public WorldListener(HttydPlugins instance) {
         this.instance = instance;
@@ -332,12 +335,76 @@ public class WorldListener implements Listener {
         DayOfWeek dayOfWeek = localDateNow.getDayOfWeek();
         String dayOfWeekTranslated = translateDayOfWeek(dayOfWeek);
         String dayOfWeekServer = dbExecute.getServerDayOfWeek();
+        String currentWeather = dbExecute.getServerWeather();
 
         if (!dayOfWeekServer.equals(dayOfWeekTranslated)) {
             setNextDay(dayOfWeekTranslated);
             setTemperatureWeather();
-            for (Player p : Bukkit.getOnlinePlayers()) {
-                scoreboardInfo.updateScoreboard(p);
+            if(currentWeather.equals("DESZCZOWO") || currentWeather.equals("BURZOWO")){
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if(isPlayerOutside(p)){
+                        int playerWetting = dbExecute.getPlayerWetting(p);
+                        switch (playerWetting){
+                            case 0:
+                            case 1:
+                            case 3:
+                            case 5:
+                            case 7: { //suchy
+                                dbExecute.updatePlayerWetting(p.getName(), playerWetting+1);
+                                break;
+                            }
+                            case 2:{ //Krople deszczu zaczynaja coraz mocniej pojawiac sie na ubraniach 10
+                                MessagesDataClass.wLWetting2(p);
+                                dbExecute.updatePlayerWetting(p.getName(), playerWetting+1);
+                                break;
+                            }
+                            case 4:{ //Ubrania sa przemoczone 20
+                                MessagesDataClass.wLWetting4(p);
+                                dbExecute.updatePlayerWetting(p.getName(), playerWetting+1);
+                                break;
+                            }
+                            case 6:{ //Twoje ubrania sa całkowice mokre 30
+                                MessagesDataClass.wLWetting6(p);
+                                dbExecute.updatePlayerWetting(p.getName(), playerWetting+1);
+                                break;
+                            }
+                            case 8:{  //Jestes cały mokry, zaczyna Ci sie robić zimno 40
+                                MessagesDataClass.wLWetting8(p);
+                                dbExecute.updatePlayerWetting(p.getName(), playerWetting+1);
+                                //start illness
+                                break;
+                            }
+                            case 9:{
+                                PowerRanksAPI apiPR = PowerRanks.getInstance().loadAPI();
+                                PowerRanksExtensions powerRanksExtensions = new PowerRanksExtensions();
+                                String playerName = p.getName();
+                                String playerRank = apiPR.getPrimaryRank(p);
+                                String playerPrefix = converter.getPlayerPrefixWithColor(apiPR.getPrefix(playerRank));
+                                String playerUserTag = "";
+                                try{
+                                    playerUserTag = converter.getPlayerPrefixWithColor(powerRanksExtensions.getUserTaq(p));
+                                }catch (Exception ignored){
+                                }
+                                MessagesDataClass.wLWetting9(p, playerPrefix, playerUserTag, playerName);
+                                break;
+                            }
+                        }
+                    }
+                    scoreboardInfo.updateScoreboard(p);
+                }
+            }else if(currentWeather.equals("SNIEZNIE")){
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if(isPlayerOutside(p)){
+
+                        int playerWetting = dbExecute.getPlayerWetting(p);
+
+                    }
+                    scoreboardInfo.updateScoreboard(p);
+                }
+            }else{
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    scoreboardInfo.updateScoreboard(p);
+                }
             }
         } else {
             LocalTime time = LocalTime.now();
@@ -352,4 +419,19 @@ public class WorldListener implements Listener {
             }
         }
     }
+
+
+    private boolean isPlayerOutside(Player player){
+        Location loc = player.getEyeLocation().add(0,1,0);
+
+        while(loc.getY() < 256){
+            if(loc.getBlock().getType() != Material.AIR){
+                return false;
+            }
+            loc.add(0,1,0);
+        }
+        return true;
+    }
+
+
 }
