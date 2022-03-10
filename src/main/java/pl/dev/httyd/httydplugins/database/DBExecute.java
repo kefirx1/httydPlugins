@@ -26,6 +26,7 @@ public class DBExecute {
                     + CreateCharacterCard.newPlayerStatistics.balance + "','"
                     + CreateCharacterCard.newPlayerStatistics.descPlayer + "','"
                     + CreateCharacterCard.newPlayerStatistics.conditionPlayer + "','"
+                    + CreateCharacterCard.newPlayerStatistics.wetting + "','"
                     + CreateCharacterCard.newPlayerStatistics.playerView + "','"
                     + CreateCharacterCard.newPlayerStatistics.herbology + "','"
                     + CreateCharacterCard.newPlayerStatistics.herbologyTime + "','"
@@ -50,7 +51,7 @@ public class DBExecute {
                     + CreateCharacterCard.newPlayerStatistics.dragonsDuels + "','"
                     + CreateCharacterCard.newPlayerStatistics.dragonsFlying + "','"
                     + CreateCharacterCard.newPlayerStatistics.dragonsCare + "'";
-            String query = "INSERT INTO players_statistics(`nick`,`prefix`,`suffix`,`dateOfBirth`,`sex`,`island`,`balance`, `descPlayer`, `conditionPlayer`, `playerView`, `herbology`,`herbologyTime`,`herbologyCrops`,`blacksmithing`,`blacksmithingAppearance`,`blacksmithingQuality`,`blacksmithingDurability`,`attack`,`attackStrength`,`attackSpeed`,`attackStamina`,`farming`,`farmingTime`,`FarmingCrops`,`FarmingAnimals`,`brain`,`brainControl`,`brainPatience`,`dragons`,`dragonsDomestication`,`dragonsDuels`,`dragonsFlying`,`dragonsCare`) VALUES( " + values + " )";
+            String query = "INSERT INTO players_statistics(`nick`,`prefix`,`suffix`,`dateOfBirth`,`sex`,`island`,`balance`, `descPlayer`, `conditionPlayer`, `wetting`, `playerView`, `herbology`,`herbologyTime`,`herbologyCrops`,`blacksmithing`,`blacksmithingAppearance`,`blacksmithingQuality`,`blacksmithingDurability`,`attack`,`attackStrength`,`attackSpeed`,`attackStamina`,`farming`,`farmingTime`,`FarmingCrops`,`FarmingAnimals`,`brain`,`brainControl`,`brainPatience`,`dragons`,`dragonsDomestication`,`dragonsDuels`,`dragonsFlying`,`dragonsCare`) VALUES( " + values + " )";
 
             try{
 
@@ -230,6 +231,29 @@ public class DBExecute {
 
         }else{
             return null;
+        }
+    }
+
+    public int getPlayerWetting(Player p){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String playerName = p.getName();
+            String query = "SELECT wetting FROM players_statistics WHERE nick = '"+playerName+"'";
+
+            try{
+                ResultSet wettingQueryResult = statement.executeQuery(query);
+
+                wettingQueryResult.next();
+                return wettingQueryResult.getInt("wetting");
+
+            }catch (Exception ignored){
+                return 0;
+            }
+
+        }else{
+            return 0;
         }
     }
 
@@ -1453,6 +1477,26 @@ public class DBExecute {
         if(statement != null){
 
             String query = "UPDATE players_statistics SET playerView='" + view + "' WHERE nick = '" + playerName + "'";
+
+            try{
+                int result = statement.executeUpdate(query);
+                return result > 0;
+
+            }catch (Exception ignored){
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+    }
+
+    public boolean updatePlayerWetting(String playerName, int wetting){
+        statement = dbConnection.getStatementDB();
+
+        if(statement != null){
+
+            String query = "UPDATE players_statistics SET wetting='" + wetting + "' WHERE nick = '" + playerName + "'";
 
             try{
                 int result = statement.executeUpdate(query);

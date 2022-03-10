@@ -11,6 +11,7 @@ public class PlayerStatistics {
     public int balance;
     public String descPlayer;
     public String conditionPlayer;
+    public int wetting;
     public String playerView;
     public int herbology;
     public int herbologyTime;
@@ -37,7 +38,7 @@ public class PlayerStatistics {
     public int dragonsCare;
 
 
-    public PlayerStatistics(String nick, String prefix, String suffix, int dateOfBirth, String sex, String island, int balance, String descPlayer, String conditionPlayer, String playerView, int herbology, int herbologyTime, int herbologyCrops, int blacksmithing, int blacksmithingAppearance, int blacksmithingQuality, int blacksmithingDurability, int attack, int attackStrength, int attackSpeed, int attackStamina, int farming, int farmingTime, int farmingCrops, int farmingAnimals, int brain, int brainControl, int brainPatience, int dragons, int dragonsDomestication, int dragonsDuels, int dragonsFlying, int dragonsCare) {
+    public PlayerStatistics(String nick, String prefix, String suffix, int dateOfBirth, String sex, String island, int balance, String descPlayer, String conditionPlayer, int wetting, String playerView, int herbology, int herbologyTime, int herbologyCrops, int blacksmithing, int blacksmithingAppearance, int blacksmithingQuality, int blacksmithingDurability, int attack, int attackStrength, int attackSpeed, int attackStamina, int farming, int farmingTime, int farmingCrops, int farmingAnimals, int brain, int brainControl, int brainPatience, int dragons, int dragonsDomestication, int dragonsDuels, int dragonsFlying, int dragonsCare) {
         this.nick = nick;
         this.prefix = prefix;
         this.suffix = suffix;
@@ -47,6 +48,7 @@ public class PlayerStatistics {
         this.balance = balance;
         this.descPlayer = descPlayer;
         this.conditionPlayer = conditionPlayer;
+        this.wetting = wetting;
         this.playerView = playerView;
         this.herbology = herbology;
         this.herbologyTime = herbologyTime;

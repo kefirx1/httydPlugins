@@ -25,7 +25,7 @@ public class CreateCharacterCard {
 
     HttydPlugins instance;
 
-    public static PlayerStatistics newPlayerStatistics = new PlayerStatistics("", "", "-", 0, "", "", 0, "-", "Zdrowy", "-" ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    public static PlayerStatistics newPlayerStatistics = new PlayerStatistics("", "", "-", 0, "", "", 0, "-", "Zdrowy",0 ,"-" ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     World world = Bukkit.getWorld("world");
     Location berkCords = new Location(world, -77, 97, 217);
     Location outcastIslandCords = new Location(world, 113, 96, 134);

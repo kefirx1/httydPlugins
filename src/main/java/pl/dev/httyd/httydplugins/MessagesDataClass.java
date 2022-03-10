@@ -13,19 +13,12 @@ public class MessagesDataClass {
     static LocalTime time = LocalTime.now();
     static LocalTime timeC = LocalTime.of(time.getHour(), time.getMinute(), time.getSecond());
 
-    private static void sendToAnotherPlayers12(Player player, String message){
-        for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
+    private static void sendToAnotherPlayers2(Player player, String message, List<Player> playersFirstStep){
+        for (Entity entity : player.getNearbyEntities(2, 2, 2)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
                 p.sendMessage(message);
-            }
-        }
-    }
-    private static void sendToAnotherPlayers24(Player player, String message){
-        for(Entity entity : player.getNearbyEntities(24,24,24)) {
-            if (entity instanceof Player) {
-                Player p = (Player) entity;
-                p.sendMessage(message);
+                playersFirstStep.add(p);
             }
         }
     }
@@ -47,17 +40,16 @@ public class MessagesDataClass {
             }
         }
     }
-    private static void sendToAnotherPlayers2(Player player, String message, List<Player> playersFirstStep){
-        for (Entity entity : player.getNearbyEntities(2, 2, 2)) {
+    private static void sendToAnotherPlayers12(Player player, String message){
+        for (Entity entity : player.getNearbyEntities(12, 12, 12)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
                 p.sendMessage(message);
-                playersFirstStep.add(p);
             }
         }
     }
-    private static void sendToAnotherPlayers50(Player player, String message){
-        for (Entity entity : player.getNearbyEntities(50, 50, 50)) {
+    private static void sendToAnotherPlayers24(Player player, String message){
+        for(Entity entity : player.getNearbyEntities(24,24,24)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
                 p.sendMessage(message);
@@ -66,6 +58,14 @@ public class MessagesDataClass {
     }
     private static void sendToAnotherPlayers25(Player player, String message){
         for (Entity entity : player.getNearbyEntities(25, 25, 25)) {
+            if (entity instanceof Player) {
+                Player p = (Player) entity;
+                p.sendMessage(message);
+            }
+        }
+    }
+    private static void sendToAnotherPlayers50(Player player, String message){
+        for (Entity entity : player.getNearbyEntities(50, 50, 50)) {
             if (entity instanceof Player) {
                 Player p = (Player) entity;
                 p.sendMessage(message);
