@@ -354,4 +354,26 @@ public class MessagesDataClass {
         player.sendMessage(message);
         sendToAnotherPlayers12(player, message);
     }
+
+    public static void wLCold2(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Zaczyna Ci byc zimno w tawrz**");
+    }
+
+    public static void wLCold4(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Przestajesz czuc swoj nos i uszy, robia sie widocznie czerwone**");
+    }
+
+    public static void wLCold6(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Jest Ci coraz zimniej, Twoje stopy i palce u rak zaczynaja zamarzac**");
+    }
+
+    public static void wLCold8(Player player){
+        player.sendMessage(ChatColor.WHITE + "[" + timeC + "] " +  ChatColor.YELLOW + "" + ChatColor.BOLD + "**Jest Ci bardzo zimno, zaczynasz sie coraz mocniej trzasc**");
+    }
+
+    public static void wLCold9(Player player, String playerPrefix, String playerUserTag, String playerName){
+        String message = ChatColor.WHITE + "[" + timeC + "] " + playerPrefix + " " + playerUserTag + " " + ChatColor.WHITE + playerName + ": " + ChatColor.YELLOW + "*Trzesie sie z zimna*";
+        player.sendMessage(message);
+        sendToAnotherPlayers12(player, message);
+    }
 }

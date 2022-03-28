@@ -34,6 +34,8 @@ public class CreatePlayerMenu {
         ItemStack catchPlayer = new ItemStack(Material.LEASH);
         ItemStack wakeUpPlayer = new ItemStack(Material.BED);
 
+        String currentWeather = dbExecute.getServerWeather();
+
         switch (dbExecute.getPlayerGender(playerClickedName)){
             case "mezczyzna":{
                 genderPlayer = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 11);
@@ -51,48 +53,50 @@ public class CreatePlayerMenu {
 
         ItemMeta wettingPlayerMeta;
 
-        switch (dbExecute.getPlayerWetting(player2)){
-            case 0:
-            case 1:{
-                break;
-            }
-            case 2:
-            case 3:{
-                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 8);
-                wettingPlayerMeta = wettingPlayer.getItemMeta();
-                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jego ubrania sa lekko zmoczone");
-                wettingPlayer.setItemMeta(wettingPlayerMeta);
-                menuPlayer.setItem(30, wettingPlayer);
-                break;
-            }
-            case 4:
-            case 5:{
-                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 2);
-                wettingPlayerMeta = wettingPlayer.getItemMeta();
-                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Ma przemoczone ubrania");
-                wettingPlayer.setItemMeta(wettingPlayerMeta);
-                menuPlayer.setItem(30, wettingPlayer);
-                break;
-            }
-            case 6:
-            case 7:{
-                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 9);
-                wettingPlayerMeta = wettingPlayer.getItemMeta();
-                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest całkowicie mokry");
-                wettingPlayer.setItemMeta(wettingPlayerMeta);
-                menuPlayer.setItem(30, wettingPlayer);
-                break;
-            }
-            case 8:
-            case 9:{
-                wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 11);
-                wettingPlayerMeta = wettingPlayer.getItemMeta();
-                wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest mokry i trzesie sie z zimna");
-                wettingPlayer.setItemMeta(wettingPlayerMeta);
-                menuPlayer.setItem(30, wettingPlayer);
-                break;
-            }
+        if( currentWeather.equals("DESZCZOWO") || currentWeather.equals("BURZOWO")){
+            switch (dbExecute.getPlayerWetting(player2)){
+                case 0:
+                case 1:{
+                    break;
+                }
+                case 2:
+                case 3:{
+                    wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 8);
+                    wettingPlayerMeta = wettingPlayer.getItemMeta();
+                    wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jego ubrania sa lekko zmoczone");
+                    wettingPlayer.setItemMeta(wettingPlayerMeta);
+                    menuPlayer.setItem(30, wettingPlayer);
+                    break;
+                }
+                case 4:
+                case 5:{
+                    wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 2);
+                    wettingPlayerMeta = wettingPlayer.getItemMeta();
+                    wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Ma przemoczone ubrania");
+                    wettingPlayer.setItemMeta(wettingPlayerMeta);
+                    menuPlayer.setItem(30, wettingPlayer);
+                    break;
+                }
+                case 6:
+                case 7:{
+                    wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 9);
+                    wettingPlayerMeta = wettingPlayer.getItemMeta();
+                    wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest całkowicie mokry");
+                    wettingPlayer.setItemMeta(wettingPlayerMeta);
+                    menuPlayer.setItem(30, wettingPlayer);
+                    break;
+                }
+                case 8:
+                case 9:{
+                    wettingPlayer = new ItemStack(Material.WOOL, 1, (short) 11);
+                    wettingPlayerMeta = wettingPlayer.getItemMeta();
+                    wettingPlayerMeta.setDisplayName(ChatColor.GOLD + "Jest mokry i trzesie sie z zimna");
+                    wettingPlayer.setItemMeta(wettingPlayerMeta);
+                    menuPlayer.setItem(30, wettingPlayer);
+                    break;
+                }
 
+            }
         }
 
         ItemMeta descPlayerMeta = descPlayer.getItemMeta();
